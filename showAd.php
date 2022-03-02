@@ -1,5 +1,6 @@
 <?php
 
+$pageTitle = "Show Ad";
 include './init.php';
 
 ?>

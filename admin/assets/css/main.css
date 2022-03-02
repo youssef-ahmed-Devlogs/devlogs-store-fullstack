@@ -197,7 +197,7 @@ input[type="file"] {
   position: absolute;
   top: 10px;
   left: 10px;
-  color: #ffdfcc;
+  color: #f1f1f1;
   font-size: 22px;
   cursor: pointer;
   transition: 0.4s ease-in-out;
@@ -295,7 +295,7 @@ input[type="file"] {
 
 .home__slider-pagination {
   position: absolute;
-  bottom: 135px !important;
+  bottom: 25px !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -318,7 +318,6 @@ input[type="file"] {
   border: 1px solid #f1f1f1;
   flex-wrap: wrap;
   margin-bottom: 50px;
-  background-color: #fff;
 }
 .products__section .filter__content input,
 .products__section .filter__content select {
@@ -330,7 +329,6 @@ input[type="file"] {
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 15px;
-  background-color: #fff;
 }
 .categories__section .categories__list a {
   font-size: 14px;
@@ -1148,38 +1146,4 @@ header .user-settings .user {
   align-items: center;
   justify-content: center;
   gap: 15px;
-}
-
-.login-or-register {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.login-or-register a {
-  color: #f27933;
-  display: block;
-  transition: 0.3s ease-in-out;
-}
-
-.login-or-register a.login {
-  background-color: #f27933;
-  color: #fff;
-  padding: 5px 10px;
-  border-radius: 5px;
-}
-
-.login-or-register a:hover {
-  opacity: 0.8;
-}
-
-.section {
-  margin-top: 130px;
-  margin-bottom: 70px;
-}
-
-.home-container {
-  position: relative;
-  top: -100px;
-  z-index: 3;
 }
