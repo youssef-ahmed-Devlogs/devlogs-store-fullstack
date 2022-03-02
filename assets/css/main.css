@@ -587,7 +587,7 @@ header {
   left: 0;
   top: 0;
   width: 100%;
-  z-index: 2;
+  z-index: 4;
 }
 header .header__content {
   display: flex;
@@ -767,8 +767,8 @@ header .right-header .user-settings .user-settings-list .user-settings-link i {
   width: 500px;
   height: 500px;
   object-fit: cover;
-  display: none;
 }
+
 .main-img.first-img {
   display: block;
 }
