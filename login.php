@@ -70,32 +70,40 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 <!-- START MAIN SECTION -->
 <main class="login-page section">
-  <div class="container">
-    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" name="username" id="username" class="form-control mb-3" placeholder="example: ahmed" />
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" class="form-control" placeholder="Enter a strong password" />
-      </div>
-      <button class="btn btn-primary mt-3">Login</button>
-    </form>
+    <div class="container">
+        <div class="main-content">
+            <div class="login_form">
+                <div class="form-content">
+                    <div class="page_title text-right">
+                        <h1>Welcom back</h1>
+                    </div>
+                    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
+                        <label for="username">Username</label>
+                        <input type="text" name="username" id="username" placeholder="example: ahmed">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password" placeholder="Enter a strong password">
+                        <button class="btn mt-3 login_btn">Login</button>
+                    </form>
+                </div>
+            </div>
+            <div class="righ_sec_img">
+                <img src="assets/images/undraw.svg" alt="">
+            </div>
+        </div>
 
-    <?php if (!empty($formErrors)) { ?>
-      <div class="backend__errors mt-4">
-        <?php
+        <?php if (!empty($formErrors)) { ?>
+        <div class="backend__errors mt-4">
+            <?php
 
         foreach ($formErrors as $e) {
           echo "<div class='alert alert-danger'>$e</div>";
         }
 
         ?>
-      </div>
-    <?php } ?>
+        </div>
+        <?php } ?>
 
-  </div>
+    </div>
 </main>
 <!-- END MAIN SECTION -->
 

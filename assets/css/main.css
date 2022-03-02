@@ -1183,3 +1183,54 @@ header .user-settings .user {
   top: -100px;
   z-index: 3;
 }
+
+.login-page .main-content,
+.register-page .main-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.login-page .login_form,
+.register-page .login_form {
+  width: 50%;
+}
+.login-page .form-content input,
+.register-page .form-content input {
+  width: 600px;
+  max-width: 100%;
+  display: block;
+  height: 40px;
+  padding: 20px;
+  outline: none;
+  border-radius: 4px;
+  border: 1px solid #eeee;
+  margin: 10px 0;
+}
+.login-page .righ_sec_img,
+.register-page .righ_sec_img {
+  display: block;
+  width: 50%;
+}
+.login-page .righ_sec_img img,
+.register-page .righ_sec_img img {
+  height: auto;
+  max-width: 100%;
+  background-size: cover;
+}
+@media (max-width: 991px) {
+  .login-page .main-content,
+  .login-page .main-content {
+    flex-direction: column;
+  }
+  .login-page .login_form,
+  .login-page .righ_sec_img,
+  .register-page .login_form,
+  .register-page .righ_sec_img {
+    width: 100%;
+  }
+}
+.login_btn,
+.register_btn {
+  background-color: #3f3d56;
+  color: white;
+}
