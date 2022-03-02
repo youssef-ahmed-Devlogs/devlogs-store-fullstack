@@ -1219,7 +1219,7 @@ header .user-settings .user {
 }
 @media (max-width: 991px) {
   .login-page .main-content,
-  .login-page .main-content {
+  .register-page .main-content {
     flex-direction: column;
   }
   .login-page .login_form,
