@@ -13,11 +13,18 @@ include './init.php';
                     <div class="page_title text-right">
                         <h1>Welcom back</h1>
                     </div>
-                    <form>
-                        <label for="eamil">Enter your email</label>
-                        <input type="email" id="email" placholder="enter your email">
-                        <label for="password">Enter your password</label>
-                        <input type="password" id="password">
+                    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
+                        <label for="username">Username</label>
+                        <input type="text" name="username" id="username" placeholder="example: ahmed">
+                        <label for="email">Email</label>
+                        <input type="text" name="email" id="email" placeholder="example: ahmed@gmail.com" />
+
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password" placeholder="Enter a strong password">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" name="confirmPassword" id="confirmPassword"
+                            placeholder="confirm password" />
+                        <button class="btn btn-primary mt-3">Login</button>
                     </form>
                 </div>
             </div>
