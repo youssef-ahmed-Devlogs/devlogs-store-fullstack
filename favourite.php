@@ -32,12 +32,13 @@ if (isset($_SESSION['username'])) {
 
 ?>
 
-    <main class="favorite-page section">
-      <div class="container">
-        <h1><?php echo $pageTitle ?></h1>
+<main class="favorite-page section">
+    <div class="container">
+        <h1 class="section__head-xl mb-5"><?php echo $pageTitle ?></h1>
 
-        <div class="row">
-          <?php
+        <div class="box_style_content ">
+            <div class="row">
+                <?php
 
           foreach ($favAds as $ad) {
 
@@ -45,44 +46,46 @@ if (isset($_SESSION['username'])) {
             $stmt->execute([$ad['ad_id'], $_SESSION['id']]);
             $inFav = $stmt->rowCount();
           ?>
-            <div class="col-xl-3 col-lg-4 col-md-6">
-              <div class="product card__product">
-                <a href="favourite.php?action=add&adid=<?php echo $ad['ad_id'] ?>" class="add__to__fav <?php echo $inFav == 1 ? 'active' : '' ?>">
-                  <i class="fas fa-star"></i>
-                </a>
-                <img class="product__img" src="./assets/images/item-empty-img.png" alt="product" />
-                <a href="showAd.php?id=<?php echo $ad['ad_id'] ?>" class="product__info">
-                  <div class="main__info">
-                    <div class="title__category">
-                      <span class="title">
-                        <?php echo strlen($ad['title']) > 15 ? substr($ad['title'], 0, 14) . "..." : $ad['title'] ?>
-                      </span>
-                      <span class="category">
-                        <?php echo $ad['category_title'] ?>
-                      </span>
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="product card__product">
+                        <a href="favourite.php?action=add&adid=<?php echo $ad['ad_id'] ?>"
+                            class="add__to__fav <?php echo $inFav == 1 ? 'active' : '' ?>">
+                            <i class="fas fa-star"></i>
+                        </a>
+                        <img class="product__img" src="./assets/images/item-empty-img.png" alt="product" />
+                        <a href="showAd.php?id=<?php echo $ad['ad_id'] ?>" class="product__info">
+                            <div class="main__info">
+                                <div class="title__category">
+                                    <span class="title">
+                                        <?php echo strlen($ad['title']) > 15 ? substr($ad['title'], 0, 14) . "..." : $ad['title'] ?>
+                                    </span>
+                                    <span class="category">
+                                        <?php echo $ad['category_title'] ?>
+                                    </span>
+                                </div>
+                                <div class="price">
+                                    <span class="number">
+                                        <?php echo $ad['price'] ?>
+                                    </span>
+                                    <span class="currency">EGP</span>
+                                </div>
+                            </div>
+                            <div class="date__location">
+                                <span class="date">
+                                    <?php echo $ad['added_date'] ?>
+                                </span>
+                                <span class="location">
+                                    <?php echo $ad['country'] . '/' . $ad['governorate'] ?>
+                                </span>
+                            </div>
+                        </a>
                     </div>
-                    <div class="price">
-                      <span class="number">
-                        <?php echo $ad['price'] ?>
-                      </span>
-                      <span class="currency">EGP</span>
-                    </div>
-                  </div>
-                  <div class="date__location">
-                    <span class="date">
-                      <?php echo $ad['added_date'] ?>
-                    </span>
-                    <span class="location">
-                      <?php echo $ad['country'] . '/' . $ad['governorate'] ?>
-                    </span>
-                  </div>
-                </a>
-              </div>
+                </div>
+                <?php } ?>
             </div>
-          <?php } ?>
         </div>
-      </div>
-    </main>
+    </div>
+</main>
 
 
 <?php

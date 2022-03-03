@@ -90,7 +90,8 @@ ul {
 }
 
 .section__head,
-.section__head-sm {
+.section__head-sm,
+.section__head-xl {
   font-size: 28px;
   position: relative;
   padding-bottom: 10px;
@@ -101,7 +102,8 @@ ul {
 }
 
 .section__head::after,
-.section__head-sm::after {
+.section__head-sm::after,
+.section__head-xl::after {
   content: "";
   position: absolute;
   left: 0;
@@ -110,7 +112,9 @@ ul {
   height: 3px;
   width: 70%;
 }
-
+.section__head-xl {
+  font-size: 40px;
+}
 .section__head-sm {
   font-size: 18px;
   padding-bottom: 5px;
@@ -1269,4 +1273,10 @@ header .user-settings .user {
     transform: translateX(100px);
     opacity: 1;
   }
+}
+
+.box_style_content {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 1px solid #f1f1f1;
 }
