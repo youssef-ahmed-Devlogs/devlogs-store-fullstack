@@ -93,7 +93,7 @@
                   </div>
 
                 </a>
-                <a href="./pages/myAds.html" class="user-settings-link">
+                <a href="myAds.php" class="user-settings-link">
                   <i class="fas fa-ad"></i>
                   My Ads
                 </a>
