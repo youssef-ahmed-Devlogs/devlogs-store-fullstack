@@ -27,7 +27,6 @@ include './init.php';
     <div class="home__slider-pagination"></div>
   </div>
 
-
   <div class="home-container">
     <div class="container">
       <div class="row home__content">
@@ -82,6 +81,10 @@ include './init.php';
                 </select>
               </form>
 
+              <div class="top__banner">
+                <img class="w-100" src="./assets/images/banner1.png" alt="banner ads">
+              </div>
+
               <!-- Latest Products -->
               <div class="products__content mt-3">
                 <h2 class="section__head">Latest Ads</h2>
@@ -98,10 +101,15 @@ include './init.php';
                   <div class="swiper-wrapper">
                     <?php
 
-                    $stmt = $conn->prepare("SELECT ads.*, ads.id AS ad_id, categories.title AS category_title, users.country FROM ads
-                                          JOIN categories ON categories.id = ads.category_id
-                                          JOIN users ON users.id = ads.user_id
-                                          ORDER BY ads.id DESC LIMIT 30
+                    $stmt = $conn->prepare("SELECT
+                                                ads.*,
+                                                ads.id AS ad_id,
+                                                users.country,
+                                                categories.title AS category_title
+                                            FROM ads
+                                            JOIN categories ON categories.id = ads.category_id
+                                            JOIN users ON users.id = ads.user_id
+                                            ORDER BY ads.id DESC LIMIT 30
                                         ");
                     $stmt->execute();
                     $ads = $stmt->fetchAll();
@@ -111,9 +119,26 @@ include './init.php';
                     ?>
                       <div class="swiper-slide">
                         <div class="product card__product">
-                          <span class="add__to__fav">
-                            <i class="fas fa-star"></i>
-                          </span>
+                          <?php
+                          if (isset($_SESSION['username'])) {
+
+                            $stmt = $conn->prepare("SELECT * FROM favorite WHERE ad_id = ? AND user_id = ?");
+                            $stmt->execute([$ad['ad_id'], $_SESSION['id']]);
+                            $inFav = $stmt->rowCount();
+
+                          ?>
+                            <a href="favourite.php?action=add&adid=<?php echo $ad['ad_id'] ?>" class="add__to__fav <?php echo $inFav == 1 ? 'active' : '' ?>">
+                              <i class="fas fa-star"></i>
+                            </a>
+                          <?php } else { ?>
+                            <a href="login.php" class="add__to__fav">
+                              <i class="fas fa-star"></i>
+                            </a>
+                          <?php
+                          }
+                          ?>
+
+
                           <img class="product__img" src="./assets/images/item-empty-img.png" alt="product" />
                           <a href="showAd.php?id=<?php echo $ad['ad_id'] ?>" class="product__info">
                             <div class="main__info">
@@ -154,179 +179,175 @@ include './init.php';
               <div class="products__content mt-5">
                 <h2 class="section__head">Top Ads</h2>
 
-                <div class="row">
-                  <div class="col-lg-9">
-                    <div class="swiper top__products swiper__container">
-                      <div class="swiper__navigation">
-                        <div class="top__products-prev prev">
-                          <i class="fas fa-arrow-left"></i>
-                        </div>
-                        <div class="top__products-next next">
-                          <i class="fas fa-arrow-right"></i>
-                        </div>
-                      </div>
-                      <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                          <div class="product card__product">
-                            <span class="add__to__fav">
-                              <i class="fas fa-star"></i>
-                            </span>
-                            <img class="product__img" src="assets/images/1.png" alt="product" />
-                            <a href="./pages/AdDetails.html" class="product__info">
-                              <div class="main__info">
-                                <div class="title__category">
-                                  <span class="title">Airbods pro</span>
-                                  <span class="category">Tech</span>
-                                </div>
-                                <div class="price">
-                                  <span class="number">3500</span>
-                                  <span class="currency">EGP</span>
-                                </div>
-                              </div>
-                              <div class="date__location">
-                                <span class="date">2/9/2022</span>
-                                <span class="location">Cairo</span>
-                              </div>
-                            </a>
-                          </div>
-                        </div>
-                        <div class="swiper-slide">
-                          <div class="product card__product">
-                            <span class="add__to__fav active">
-                              <i class="fas fa-star"></i>
-                            </span>
-                            <img class="product__img" src="assets/images/3.jpg" alt="product" />
-                            <a href="./pages/AdDetails.html" class="product__info">
-                              <div class="main__info">
-                                <div class="title__category">
-                                  <span class="title">Black Jacket</span>
-                                  <span class="category">Men clothes</span>
-                                </div>
-                                <div class="price">
-                                  <span class="number">500</span>
-                                  <span class="currency">EGP</span>
-                                </div>
-                              </div>
-                              <div class="date__location">
-                                <span class="date">2/9/2022</span>
-                                <span class="location">Cairo</span>
-                              </div>
-                            </a>
-                          </div>
-                        </div>
-                        <div class="swiper-slide">
-                          <div class="product card__product">
-                            <span class="add__to__fav">
-                              <i class="fas fa-star"></i>
-                            </span>
-                            <img class="product__img" src="assets/images/2.jpg" alt="product" />
-                            <a href="./pages/AdDetails.html" class="product__info">
-                              <div class="main__info">
-                                <div class="title__category">
-                                  <span class="title">Gaming PC</span>
-                                  <span class="category">Tech</span>
-                                </div>
-                                <div class="price">
-                                  <span class="number">2500</span>
-                                  <span class="currency">EGP</span>
-                                </div>
-                              </div>
-                              <div class="date__location">
-                                <span class="date">4/9/2022</span>
-                                <span class="location">Giza</span>
-                              </div>
-                            </a>
-                          </div>
-                        </div>
-                        <div class="swiper-slide">
-                          <div class="product card__product">
-                            <span class="add__to__fav">
-                              <i class="fas fa-star"></i>
-                            </span>
-                            <img class="product__img" src="assets/images/1.png" alt="product" />
-                            <a href="./pages/AdDetails.html" class="product__info">
-                              <div class="main__info">
-                                <div class="title__category">
-                                  <span class="title">Airbods pro</span>
-                                  <span class="category">Tech</span>
-                                </div>
-                                <div class="price">
-                                  <span class="number">3500</span>
-                                  <span class="currency">EGP</span>
-                                </div>
-                              </div>
-                              <div class="date__location">
-                                <span class="date">2/9/2022</span>
-                                <span class="location">Cairo</span>
-                              </div>
-                            </a>
-                          </div>
-                        </div>
-                        <div class="swiper-slide">
-                          <div class="product card__product">
-                            <span class="add__to__fav active">
-                              <i class="fas fa-star"></i>
-                            </span>
-                            <img class="product__img" src="assets/images/3.jpg" alt="product" />
-                            <a href="./pages/AdDetails.html" class="product__info">
-                              <div class="main__info">
-                                <div class="title__category">
-                                  <span class="title">Black Jacket</span>
-                                  <span class="category">Men clothes</span>
-                                </div>
-                                <div class="price">
-                                  <span class="number">500</span>
-                                  <span class="currency">EGP</span>
-                                </div>
-                              </div>
-                              <div class="date__location">
-                                <span class="date">2/9/2022</span>
-                                <span class="location">Cairo</span>
-                              </div>
-                            </a>
-                          </div>
-                        </div>
-                        <div class="swiper-slide">
-                          <div class="product card__product">
-                            <span class="add__to__fav">
-                              <i class="fas fa-star"></i>
-                            </span>
-                            <img class="product__img" src="assets/images/2.jpg" alt="product" />
-                            <a href="./pages/AdDetails.html" class="product__info">
-                              <div class="main__info">
-                                <div class="title__category">
-                                  <span class="title">Gaming PC</span>
-                                  <span class="category">Tech</span>
-                                </div>
-                                <div class="price">
-                                  <span class="number">2500</span>
-                                  <span class="currency">EGP</span>
-                                </div>
-                              </div>
-                              <div class="date__location">
-                                <span class="date">4/9/2022</span>
-                                <span class="location">Giza</span>
-                              </div>
-                            </a>
-                          </div>
-                        </div>
-                      </div>
 
-                      <div class="top__products-pagination swiper__pagination"></div>
+
+                <div class="swiper top__products swiper__container">
+                  <div class="swiper__navigation">
+                    <div class="top__products-prev prev">
+                      <i class="fas fa-arrow-left"></i>
+                    </div>
+                    <div class="top__products-next next">
+                      <i class="fas fa-arrow-right"></i>
                     </div>
                   </div>
-                  <div class="col-lg-3">
-                    <div class="ads__banner border banner__h400">
-                      <img src="assets/images/banner3.png" alt="banner" />
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                      <div class="product card__product">
+                        <span class="add__to__fav">
+                          <i class="fas fa-star"></i>
+                        </span>
+                        <img class="product__img" src="assets/images/1.png" alt="product" />
+                        <a href="./pages/AdDetails.html" class="product__info">
+                          <div class="main__info">
+                            <div class="title__category">
+                              <span class="title">Airbods pro</span>
+                              <span class="category">Tech</span>
+                            </div>
+                            <div class="price">
+                              <span class="number">3500</span>
+                              <span class="currency">EGP</span>
+                            </div>
+                          </div>
+                          <div class="date__location">
+                            <span class="date">2/9/2022</span>
+                            <span class="location">Cairo</span>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div class="product card__product">
+                        <span class="add__to__fav active">
+                          <i class="fas fa-star"></i>
+                        </span>
+                        <img class="product__img" src="assets/images/3.jpg" alt="product" />
+                        <a href="./pages/AdDetails.html" class="product__info">
+                          <div class="main__info">
+                            <div class="title__category">
+                              <span class="title">Black Jacket</span>
+                              <span class="category">Men clothes</span>
+                            </div>
+                            <div class="price">
+                              <span class="number">500</span>
+                              <span class="currency">EGP</span>
+                            </div>
+                          </div>
+                          <div class="date__location">
+                            <span class="date">2/9/2022</span>
+                            <span class="location">Cairo</span>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div class="product card__product">
+                        <span class="add__to__fav">
+                          <i class="fas fa-star"></i>
+                        </span>
+                        <img class="product__img" src="assets/images/2.jpg" alt="product" />
+                        <a href="./pages/AdDetails.html" class="product__info">
+                          <div class="main__info">
+                            <div class="title__category">
+                              <span class="title">Gaming PC</span>
+                              <span class="category">Tech</span>
+                            </div>
+                            <div class="price">
+                              <span class="number">2500</span>
+                              <span class="currency">EGP</span>
+                            </div>
+                          </div>
+                          <div class="date__location">
+                            <span class="date">4/9/2022</span>
+                            <span class="location">Giza</span>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div class="product card__product">
+                        <span class="add__to__fav">
+                          <i class="fas fa-star"></i>
+                        </span>
+                        <img class="product__img" src="assets/images/1.png" alt="product" />
+                        <a href="./pages/AdDetails.html" class="product__info">
+                          <div class="main__info">
+                            <div class="title__category">
+                              <span class="title">Airbods pro</span>
+                              <span class="category">Tech</span>
+                            </div>
+                            <div class="price">
+                              <span class="number">3500</span>
+                              <span class="currency">EGP</span>
+                            </div>
+                          </div>
+                          <div class="date__location">
+                            <span class="date">2/9/2022</span>
+                            <span class="location">Cairo</span>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div class="product card__product">
+                        <span class="add__to__fav active">
+                          <i class="fas fa-star"></i>
+                        </span>
+                        <img class="product__img" src="assets/images/3.jpg" alt="product" />
+                        <a href="./pages/AdDetails.html" class="product__info">
+                          <div class="main__info">
+                            <div class="title__category">
+                              <span class="title">Black Jacket</span>
+                              <span class="category">Men clothes</span>
+                            </div>
+                            <div class="price">
+                              <span class="number">500</span>
+                              <span class="currency">EGP</span>
+                            </div>
+                          </div>
+                          <div class="date__location">
+                            <span class="date">2/9/2022</span>
+                            <span class="location">Cairo</span>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div class="product card__product">
+                        <span class="add__to__fav">
+                          <i class="fas fa-star"></i>
+                        </span>
+                        <img class="product__img" src="assets/images/2.jpg" alt="product" />
+                        <a href="./pages/AdDetails.html" class="product__info">
+                          <div class="main__info">
+                            <div class="title__category">
+                              <span class="title">Gaming PC</span>
+                              <span class="category">Tech</span>
+                            </div>
+                            <div class="price">
+                              <span class="number">2500</span>
+                              <span class="currency">EGP</span>
+                            </div>
+                          </div>
+                          <div class="date__location">
+                            <span class="date">4/9/2022</span>
+                            <span class="location">Giza</span>
+                          </div>
+                        </a>
+                      </div>
                     </div>
                   </div>
+
+                  <div class="top__products-pagination swiper__pagination"></div>
                 </div>
+
+
+
               </div>
 
               <div class="products__content mt-5">
                 <div class="row">
                   <?php
-                  $stmt = $conn->prepare("SELECT ads.*, categories.title AS category_title, users.country FROM ads
+                  $stmt = $conn->prepare("SELECT ads.*, ads.id AS ad_id, categories.title AS category_title, users.country FROM ads
                                           JOIN categories ON categories.id = ads.category_id
                                           JOIN users ON users.id = ads.user_id
                                           ORDER BY ads.id DESC
@@ -336,12 +357,29 @@ include './init.php';
 
 
                   foreach ($ads as $ad) {
+
+
                   ?>
                     <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
                       <div class="product card__product">
-                        <span class="add__to__fav">
-                          <i class="fas fa-star"></i>
-                        </span>
+                        <?php
+                        if (isset($_SESSION['username'])) {
+
+                          $stmt = $conn->prepare("SELECT * FROM favorite WHERE ad_id = ? AND user_id = ?");
+                          $stmt->execute([$ad['ad_id'], $_SESSION['id']]);
+                          $inFav = $stmt->rowCount();
+
+                        ?>
+                          <a href="favourite.php?action=add&adid=<?php echo $ad['ad_id'] ?>" class="add__to__fav <?php echo $inFav == 1 ? 'active' : '' ?>">
+                            <i class="fas fa-star"></i>
+                          </a>
+                        <?php } else { ?>
+                          <a href="login.php" class="add__to__fav">
+                            <i class="fas fa-star"></i>
+                          </a>
+                        <?php
+                        }
+                        ?>
                         <img class="product__img" src="./assets/images/item-empty-img.png" alt="product" />
                         <a href="./pages/AdDetails.html" class="product__info">
                           <div class="main__info">
