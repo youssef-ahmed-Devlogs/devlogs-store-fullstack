@@ -77,11 +77,23 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     <div class="page_title text-right">
                         <h1>Welcom back</h1>
                     </div>
-                    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
-                        <label for="username">Username</label>
-                        <input type="text" name="username" id="username" placeholder="example: ahmed">
-                        <label for="password">Password</label>
-                        <input type="password" name="password" id="password" placeholder="Enter a strong password">
+                    <form class="needs-validation" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST" novalidate>
+                        <div class="form-group mb-3">
+                            <label for="username">Username</label>
+                            <input class="form-control" type="text" name="username" id="username"
+                                placeholder="example: ahmed" required>
+                            <div class="invalid-feedback">
+                                Please write a username.
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="password">Password</label>
+                            <input class="form-control" type="password" name="password" id="password"
+                                placeholder="Enter a strong password" required>
+                            <div class="invalid-feedback">
+                                Please write a password.
+                            </div>
+                        </div>
                         <button class="btn mt-3 login_btn">Login</button>
                     </form>
                 </div>

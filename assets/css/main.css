@@ -1235,3 +1235,38 @@ header .user-settings .user {
   background-color: #3f3d56;
   color: white;
 }
+
+.page_title {
+  margin-bottom: 30px;
+  animation: moveLifet 1s ease-in-out;
+}
+.form-group {
+  position: relative;
+}
+.star {
+  position: absolute;
+  top: 48px;
+  right: 20px;
+  color: #dc3545;
+}
+
+@media (max-width: 767px) {
+  .form-group input,
+  .form-group label {
+    font-size: 14px;
+  }
+}
+
+@keyframes moveLifet {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  80% {
+    transform: translateX(110px);
+  }
+  100% {
+    transform: translateX(100px);
+    opacity: 1;
+  }
+}
