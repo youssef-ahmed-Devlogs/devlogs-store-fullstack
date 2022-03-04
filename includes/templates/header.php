@@ -69,7 +69,7 @@
               </span>
             </div>
             <div class="nav-links">
-              <a href="./pages/addAd.html" class="button-border button-secondary-blue">
+              <a href="myAds.php?action=add" class="button-border button-secondary-blue">
                 <i class="fas fa-plus"></i>
                 <span>Add Ad</span>
               </a>
@@ -101,7 +101,7 @@
                   <i class="fas fa-envelope"></i>
                   Messages
                 </a>
-                <a href="./pages/addAd.html" class="user-settings-link">
+                <a href="myAds.php?action=add" class="user-settings-link">
                   <i class="fas fa-plus"></i>
                   Add ad
                 </a>

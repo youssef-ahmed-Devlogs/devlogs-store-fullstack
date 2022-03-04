@@ -313,9 +313,6 @@ input[type="file"] {
 }
 
 .products__section .filter__content {
-  display: flex;
-  align-items: center;
-  gap: 10px;
   box-shadow: 0 0 6px 0 rgba(34, 34, 34, 0.08);
   padding: 10px;
   border-radius: 8px;
@@ -326,7 +323,8 @@ input[type="file"] {
 }
 .products__section .filter__content input,
 .products__section .filter__content select {
-  flex: 1;
+  width: 100%;
+  display: block;
 }
 
 .categories__section {
@@ -361,9 +359,6 @@ input[type="file"] {
   }
 }
 @media (max-width: 1199px) {
-  .home__content {
-    flex-direction: column-reverse;
-  }
   .home__content .categories__section {
     margin-top: 20px;
   }
@@ -920,10 +915,6 @@ header .right-header .user-settings .user-settings-list .user-settings-link i {
   padding-left: 4px;
 }
 
-.main-content a {
-  margin-bottom: 10px;
-}
-
 .another-addOfUser {
   padding-top: 10px;
   border: 1px solid #f1f1f1;
@@ -1104,14 +1095,16 @@ h2.title_related {
   object-fit: cover;
   border-radius: 50%;
 }
+
 .user__details h5 {
-  margin-top: 7px;
+  margin-top: 20px;
+  font-size: 16px;
+  color: #3f3d56;
 }
 
-.user__details + p {
-  margin-top: -10px;
+.user__details p {
   color: #777;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 footer {
@@ -1279,4 +1272,90 @@ header .user-settings .user {
   padding: 10px 20px;
   border-radius: 5px;
   border: 1px solid #f1f1f1;
+}
+
+.editAd-page .product__info,
+.addAd-page .product__info {
+  bottom: 0;
+  height: initial;
+}
+
+.editAd-page .product__info .desc,
+.addAd-page .product__info .desc {
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.btn-primary {
+  background-color: #3f3d56;
+  border-color: #3f3d56;
+}
+
+.btn-primary:hover {
+  border-color: #4f4c6d;
+  background-color: #4f4c6d;
+}
+
+table tr {
+  vertical-align: middle;
+}
+
+.top-settings .left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.button-group small {
+  display: block;
+  font-size: 9px;
+  font-weight: bold;
+}
+
+.top-settings .right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.top-settings .right label {
+  font-size: 9px;
+  font-weight: bold;
+}
+
+.filter__content label {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.page-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.page-empty img {
+  display: block;
+  width: 400px;
+}
+
+.page-empty span {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.page-empty a {
+  display: block;
+  width: max-content;
+  margin: 0 auto;
+}
+
+.search-page input,
+.search-page select {
+  width: 100%;
 }

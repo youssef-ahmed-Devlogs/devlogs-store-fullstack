@@ -70,52 +70,50 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 <!-- START MAIN SECTION -->
 <main class="login-page section">
-    <div class="container">
-        <div class="main-content">
-            <div class="login_form">
-                <div class="form-content">
-                    <div class="page_title text-right">
-                        <h1>Welcom back</h1>
-                    </div>
-                    <form class="needs-validation" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST" novalidate>
-                        <div class="form-group mb-3">
-                            <label for="username">Username</label>
-                            <input class="form-control" type="text" name="username" id="username"
-                                placeholder="example: ahmed" required>
-                            <div class="invalid-feedback">
-                                Please write a username.
-                            </div>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="password">Password</label>
-                            <input class="form-control" type="password" name="password" id="password"
-                                placeholder="Enter a strong password" required>
-                            <div class="invalid-feedback">
-                                Please write a password.
-                            </div>
-                        </div>
-                        <button class="btn mt-3 login_btn">Login</button>
-                    </form>
-                </div>
+  <div class="container">
+    <div class="main-content">
+      <div class="login_form">
+        <div class="form-content">
+          <div class="page_title text-right">
+            <h1>Welcom back</h1>
+          </div>
+          <form class="needs-validation" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST" novalidate>
+            <div class="form-group mb-3">
+              <label for="username">Username</label>
+              <input class="form-control" type="text" name="username" id="username" placeholder="example: ahmed" required>
+              <div class="invalid-feedback">
+                Please write a username.
+              </div>
             </div>
-            <div class="righ_sec_img">
-                <img src="assets/images/undraw.svg" alt="">
+            <div class="form-group mb-3">
+              <label for="password">Password</label>
+              <input class="form-control" type="password" name="password" id="password" placeholder="Enter a strong password" required>
+              <div class="invalid-feedback">
+                Please write a password.
+              </div>
             </div>
+            <button class="btn mt-3 login_btn">Login</button>
+          </form>
         </div>
+      </div>
+      <div class="righ_sec_img">
+        <img src="assets/images/login.svg" alt="">
+      </div>
+    </div>
 
-        <?php if (!empty($formErrors)) { ?>
-        <div class="backend__errors mt-4">
-            <?php
+    <?php if (!empty($formErrors)) { ?>
+      <div class="backend__errors mt-4">
+        <?php
 
         foreach ($formErrors as $e) {
           echo "<div class='alert alert-danger'>$e</div>";
         }
 
         ?>
-        </div>
-        <?php } ?>
+      </div>
+    <?php } ?>
 
-    </div>
+  </div>
 </main>
 <!-- END MAIN SECTION -->
 
