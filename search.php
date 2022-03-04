@@ -181,7 +181,7 @@ if (isset($_SESSION['username'])) {
 
               foreach ($categories as $category) {
               ?>
-                <a href="#">
+                <a href="categories.php?id=<?php echo $category['id'] ?>">
                   <?php echo $category['title'] ?>
                 </a>
 

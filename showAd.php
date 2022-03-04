@@ -234,7 +234,7 @@ if (isset($_SESSION['username'])) {
 
                             <!-- START CATEGORIES SECTION -->
 
-                            <div class="categories__section mt-3">
+                            <div class="categories__section">
                                 <h2 class="section__head-sm">Categories</h2>
                                 <ul class="categories__list">
                                     <?php
@@ -244,7 +244,7 @@ if (isset($_SESSION['username'])) {
 
                                     foreach ($categories as $category) {
                                     ?>
-                                        <a href="#">
+                                        <a href="categories.php?id=<?php echo $category['id'] ?>">
                                             <?php echo $category['title'] ?>
                                         </a>
 

@@ -106,7 +106,7 @@ if (isset($_SESSION['username'])) {
 
                       <div class="button-group">
                         <small>Show</small>
-                        <a href="myAds.php?action=show&adid=<?php echo $ad['id'] ?>" class="btn btn-secondary" title="Show">
+                        <a href="showAd.php?id=<?php echo $ad['id'] ?>" class="btn btn-secondary" title="Show">
                           <i class="fas fa-eye"></i>
                         </a>
                       </div>
