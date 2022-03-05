@@ -90,6 +90,58 @@ if (isset($_SESSION['username'])) {
                                 </div>
                             </div>
 
+                            <div class="comments-section box_style_content">
+
+                                <?php
+
+                                $stmt = $conn->prepare("SELECT comments.comment, users.fullname FROM comments
+                                                            JOIN users ON users.id = comments.user_id
+                                                            WHERE comments.ad_id = ?
+                                                            ORDER BY comments.id DESC
+                                                        ");
+                                $stmt->execute([$adid]);
+                                $comments = $stmt->fetchAll();
+
+                                ?>
+
+                                <form action="comment.php" method="POST">
+                                    <div class="top-head">
+                                        <span>
+                                            Comments
+                                            <span class="count">
+                                                (<?php echo count($comments) ?>)
+                                            </span>
+                                        </span>
+                                        <button class="button button-secondary-blue">
+                                            Add a comment
+                                        </button>
+                                    </div>
+                                    <input type="hidden" name="adid" value="<?php echo $adid ?>">
+                                    <textarea name="comment" class="form-control mt-4 mb-4" cols="30" rows="5" placeholder="Write a comment"></textarea>
+                                </form>
+                                <div class="comments-list">
+                                    <?php foreach ($comments as $comment) { ?>
+                                        <div class="comment mt-3 box_style_content">
+                                            <div class="user-info">
+                                                <img src="assets/images/item-empty-img.png" alt="">
+                                                <a href="#" class="fullname">
+                                                    <?php echo $comment['fullname'] ?>
+                                                </a>
+                                            </div>
+                                            <p class="text">
+                                                <?php echo $comment['comment'] ?>
+                                            </p>
+                                        </div>
+                                    <?php
+
+                                    }
+
+                                    echo count($comments) <= 0 ? "<div class='has-no'>This ad has no comments.</div>" : "";
+
+                                    ?>
+                                </div>
+                            </div>
+
                             <div class="products__content mt-3">
                                 <h2 class="section__head mt-4">Other ads for this seller</h2>
 
@@ -234,7 +286,7 @@ if (isset($_SESSION['username'])) {
 
                             <!-- START CATEGORIES SECTION -->
 
-                            <div class="categories__section">
+                            <div class="categories__section mt-3">
                                 <h2 class="section__head-sm">Categories</h2>
                                 <ul class="categories__list">
                                     <?php

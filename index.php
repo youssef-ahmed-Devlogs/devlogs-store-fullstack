@@ -37,15 +37,39 @@ include './init.php';
             <h2 class="section__head-sm">Categories</h2>
             <ul class="categories__list">
               <?php
-              $stmt = $conn->prepare("SELECT * FROM categories");
+              $stmt = $conn->prepare("SELECT * FROM categories WHERE parent = 0");
               $stmt->execute();
               $categories = $stmt->fetchAll();
 
               foreach ($categories as $category) {
               ?>
-                <a href="categories.php?id=<?php echo $category['id'] ?>">
-                  <?php echo $category['title'] ?>
-                </a>
+
+                <li>
+                  <a href="categories.php?id=<?php echo $category['id'] ?>">
+                    <?php echo $category['title'] ?>
+                  </a>
+
+                  <ul class="sub-category-list">
+
+                    <?php
+
+                    $stmt = $conn->prepare("SELECT * FROM categories WHERE parent = ?");
+                    $stmt->execute([$category['id']]);
+                    $subCategories = $stmt->fetchAll();
+
+
+                    foreach ($subCategories as $subCategory) {
+                    ?>
+
+                      <li>
+                        <a href="categories.php?id=<?php echo $subCategory['id'] ?>">
+                          <?php echo $subCategory['title'] ?>
+                        </a>
+                      </li>
+
+                    <?php } ?>
+                  </ul>
+                </li>
 
               <?php } ?>
             </ul>
@@ -302,7 +326,7 @@ include './init.php';
         </div>
         <div class="col-12">
           <div class="products__content">
-            <div class="box_style_content ">
+            <div class="box_style_content">
               <div class="row">
                 <?php
                 $stmt = $conn->prepare("SELECT ads.*, ads.id AS ad_id, categories.title AS category_title, users.country FROM ads
