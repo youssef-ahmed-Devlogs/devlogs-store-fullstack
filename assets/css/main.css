@@ -1448,8 +1448,6 @@ table tr {
 .profile_card .card:hover img {
   transform: scale(1.1);
 }
-.menue_alien {
-}
 .menue_alien .dropdown {
   font-size: 33px;
   position: absolute;
@@ -1474,4 +1472,8 @@ table tr {
 }
 .card__product__img {
   overflow: hidden;
+}
+.flex_icon i,
+.gird_icon i {
+  font-size: 33px;
 }

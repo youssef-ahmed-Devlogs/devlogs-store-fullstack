@@ -196,6 +196,6 @@ function changLayout() {
     item.classList.toggle("col-lg-12");
   });
   product_card.forEach((i) => {
-    i.classList.add("card__product_row");
+    i.classList.toggle("card__product_row");
   });
 }

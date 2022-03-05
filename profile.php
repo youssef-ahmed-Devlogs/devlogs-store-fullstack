@@ -85,8 +85,84 @@ include './init.php';
             </div>
             <div class="col-lg-9">
                 <div class="row">
-                    <div class="grid__icon">
-                        <i class="fas fa-grip-horizontal fa-2x mb-2" id="grid_icon"></i>
+                    <div class="flex_icon">
+                        <i class="fas fa-list"></i>
+                    </div>
+                    <div class="grid_icon">
+                        <i class="fas fa-th" id="grid_icon"></i>
+                    </div>
+                    <div class="col-lg-3 px-2 col_option mb-2">
+                        <div class="product card__product">
+                            <a href="#" class="add__to__fav">
+                                <i class="fas fa-star"></i>
+                            </a>
+                            <div class="card__product__img">
+                                <img class="product__img" src="./assets/images/item-empty-img.png" alt="product" />
+                            </div> <a href="#" class="product__info">
+                                <div class="main__info">
+                                    <div class="title__category">
+                                        <span class="title">
+                                            Title
+                                        </span>
+                                        <span class="category">
+                                            category
+                                        </span>
+                                    </div>
+                                    <div class="price">
+                                        <span class="number">
+                                            1400
+                                        </span>
+                                        <span class="currency">EGP</span>
+                                    </div>
+                                </div>
+                                <div class="date__location">
+                                    <span class="date">
+                                        2022-5-3
+                                    </span>
+                                    <span class="location">
+                                        Egypt/cairo
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 px-2 col_option mb-2">
+                        <div class="product card__product">
+                            <a href="#" class="add__to__fav">
+                                <i class="fas fa-star"></i>
+                            </a>
+                            <div class="card__product__img">
+                                <div class="card__product__img">
+                                    <img class="product__img" src="./assets/images/item-empty-img.png" alt="product" />
+                                </div>
+                            </div>
+                            <a href="#" class="product__info">
+                                <div class="main__info">
+                                    <div class="title__category">
+                                        <span class="title">
+                                            Title
+                                        </span>
+                                        <span class="category">
+                                            category
+                                        </span>
+                                    </div>
+                                    <div class="price">
+                                        <span class="number">
+                                            1400
+                                        </span>
+                                        <span class="currency">EGP</span>
+                                    </div>
+                                </div>
+                                <div class="date__location">
+                                    <span class="date">
+                                        2022-5-3
+                                    </span>
+                                    <span class="location">
+                                        Egypt/cairo
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                     <div class="col-lg-3 px-2 col_option mb-2">
                         <div class="product card__product">
@@ -130,76 +206,7 @@ include './init.php';
                             </a>
                             <div class="card__product__img">
                                 <img class="product__img" src="./assets/images/item-empty-img.png" alt="product" />
-                            </div>
-                            <a href="#" class="product__info">
-                                <div class="main__info">
-                                    <div class="title__category">
-                                        <span class="title">
-                                            Title
-                                        </span>
-                                        <span class="category">
-                                            category
-                                        </span>
-                                    </div>
-                                    <div class="price">
-                                        <span class="number">
-                                            1400
-                                        </span>
-                                        <span class="currency">EGP</span>
-                                    </div>
-                                </div>
-                                <div class="date__location">
-                                    <span class="date">
-                                        2022-5-3
-                                    </span>
-                                    <span class="location">
-                                        Egypt/cairo
-                                    </span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 px-2 col_option mb-2">
-                        <div class="product card__product">
-                            <a href="#" class="add__to__fav">
-                                <i class="fas fa-star"></i>
-                            </a>
-                            <img class="product__img" src="./assets/images/item-empty-img.png" alt="product" />
-                            <a href="#" class="product__info">
-                                <div class="main__info">
-                                    <div class="title__category">
-                                        <span class="title">
-                                            Title
-                                        </span>
-                                        <span class="category">
-                                            category
-                                        </span>
-                                    </div>
-                                    <div class="price">
-                                        <span class="number">
-                                            1400
-                                        </span>
-                                        <span class="currency">EGP</span>
-                                    </div>
-                                </div>
-                                <div class="date__location">
-                                    <span class="date">
-                                        2022-5-3
-                                    </span>
-                                    <span class="location">
-                                        Egypt/cairo
-                                    </span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 px-2 col_option mb-2">
-                        <div class="product card__product">
-                            <a href="#" class="add__to__fav">
-                                <i class="fas fa-star"></i>
-                            </a>
-                            <img class="product__img" src="./assets/images/item-empty-img.png" alt="product" />
-                            <a href="#" class="product__info">
+                            </div> <a href="#" class="product__info">
                                 <div class="main__info">
                                     <div class="title__category">
                                         <span class="title">
