@@ -7,12 +7,9 @@ $pageTitle = "Categories";
 include './init.php';
 
 
-
-
 $categoryid = isset($_GET['id']) && is_numeric($_GET['id']) ? intval($_GET['id']) : 0;
 
 if ($categoryid > 0) {
-
 
   $stmt = $conn->prepare("SELECT                           
                             ads.*,
@@ -24,12 +21,12 @@ if ($categoryid > 0) {
                           JOIN users ON users.id = ads.user_id
                           WHERE ads.publish_state = 'published'
                           AND categories.id = ?
+                          OR parent = ?
                           ORDER BY ads.id DESC
                         ");
 
-  $stmt->execute([$categoryid]);
+  $stmt->execute([$categoryid, $categoryid]);
   $ads = $stmt->fetchAll();
-
 
   if ($stmt->rowCount() > 0) {
 ?>
