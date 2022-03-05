@@ -1389,6 +1389,9 @@ table tr {
 .user_nameAnd_desc .media {
   display: flex;
 }
+.user_nameAnd_desc h3 {
+  font-weight: 600;
+}
 .user_nameAnd_desc .media div {
   margin: 0 7px;
 }
@@ -1444,4 +1447,31 @@ table tr {
 }
 .profile_card .card:hover img {
   transform: scale(1.1);
+}
+.menue_alien {
+}
+.menue_alien .dropdown {
+  font-size: 33px;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+.dropdown-toggle::after {
+  display: none;
+}
+.menue_alien .dropdown i {
+  font-size: 33px;
+}
+.card__product_row .product__info {
+  position: initial !important;
+}
+.card__product_row {
+  display: flex;
+  height: 150px;
+  margin-bottom: 20px;
+}
+.card__product__img {
+  overflow: hidden;
 }

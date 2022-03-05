@@ -184,3 +184,18 @@ requiredInputs.forEach((item) => {
   formGroup.append(star);
   console.log(formGroup);
 });
+
+const gridIcon = document.getElementById("grid_icon");
+const colOption = document.querySelectorAll(".col_option");
+const product_card = document.querySelectorAll(".card__product");
+
+gridIcon.addEventListener("click", changLayout);
+
+function changLayout() {
+  colOption.forEach((item) => {
+    item.classList.toggle("col-lg-12");
+  });
+  product_card.forEach((i) => {
+    i.classList.add("card__product_row");
+  });
+}
