@@ -31,16 +31,27 @@ include './init.php';
                                 <a href="#">obour</a>
                             </div>
                             <div>
-                                <span><i class="fas fa-phone"></i></span>
+                                <i class="fas fa-location-arrow"></i>
                                 <a href="#">obour</a>
                             </div>
                             <div>
-                                <span><i class="fas fa-phone"></i></span>
+                                <i class="fas fa-envelope"></i>
                                 <a href="#">abdorabie</a>
                             </div>
                         </div>
                         <div class="menue_alien">
-                            <i class="fa-solid fa-bars"></i>
+                            <div class="dropdown">
+                                <button class="btn btn dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -62,7 +73,7 @@ include './init.php';
                         <span><i class="fas fa-mail"></i></span>
                         <a href="#">0111 89 332 54</a>
                     </div>
-                    <button class="chat_btn">caht</button>
+                    <button class="chat_btn"><i class="fas fa-comment"></i> caht</button>
                     <div class="last_rating">
                         <h3>4.5</h3>
                         <div>
@@ -74,52 +85,153 @@ include './init.php';
             </div>
             <div class="col-lg-9">
                 <div class="row">
-                    <div class="col-lg-3 px-2 mb-2">
-                        <div class="profile_card">
-                            <div class="card">
-                                <img src="./assets/images/1.png" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Some quick example text to build on the card title and make up
-                                        the
-                                        bulk of the card's content.</p>
+                    <div class="flex_icon">
+                        <i class="fas fa-list"></i>
+                    </div>
+                    <div class="grid_icon">
+                        <i class="fas fa-th" id="grid_icon"></i>
+                    </div>
+                    <div class="col-lg-3 px-2 col_option mb-2">
+                        <div class="product card__product">
+                            <a href="#" class="add__to__fav">
+                                <i class="fas fa-star"></i>
+                            </a>
+                            <div class="card__product__img">
+                                <img class="product__img" src="./assets/images/item-empty-img.png" alt="product" />
+                            </div> <a href="#" class="product__info">
+                                <div class="main__info">
+                                    <div class="title__category">
+                                        <span class="title">
+                                            Title
+                                        </span>
+                                        <span class="category">
+                                            category
+                                        </span>
+                                    </div>
+                                    <div class="price">
+                                        <span class="number">
+                                            1400
+                                        </span>
+                                        <span class="currency">EGP</span>
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="date__location">
+                                    <span class="date">
+                                        2022-5-3
+                                    </span>
+                                    <span class="location">
+                                        Egypt/cairo
+                                    </span>
+                                </div>
+                            </a>
                         </div>
                     </div>
-                    <div class="col-lg-3 px-2 mb-2">
-                        <div class="profile_card">
-                            <div class="card">
-                                <img src="./assets/images/1.png" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Some quick example text to build on the card title and make up
-                                        the
-                                        bulk of the card's content.</p>
+                    <div class="col-lg-3 px-2 col_option mb-2">
+                        <div class="product card__product">
+                            <a href="#" class="add__to__fav">
+                                <i class="fas fa-star"></i>
+                            </a>
+                            <div class="card__product__img">
+                                <div class="card__product__img">
+                                    <img class="product__img" src="./assets/images/item-empty-img.png" alt="product" />
                                 </div>
                             </div>
+                            <a href="#" class="product__info">
+                                <div class="main__info">
+                                    <div class="title__category">
+                                        <span class="title">
+                                            Title
+                                        </span>
+                                        <span class="category">
+                                            category
+                                        </span>
+                                    </div>
+                                    <div class="price">
+                                        <span class="number">
+                                            1400
+                                        </span>
+                                        <span class="currency">EGP</span>
+                                    </div>
+                                </div>
+                                <div class="date__location">
+                                    <span class="date">
+                                        2022-5-3
+                                    </span>
+                                    <span class="location">
+                                        Egypt/cairo
+                                    </span>
+                                </div>
+                            </a>
                         </div>
                     </div>
-                    <div class="col-lg-3 px-2 mb-2">
-                        <div class="profile_card">
-                            <div class="card">
-                                <img src="./assets/images/1.png" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Some quick example text to build on the card title and make up
-                                        the
-                                        bulk of the card's content.</p>
+                    <div class="col-lg-3 px-2 col_option mb-2">
+                        <div class="product card__product">
+                            <a href="#" class="add__to__fav">
+                                <i class="fas fa-star"></i>
+                            </a>
+                            <div class="card__product__img">
+                                <img class="product__img" src="./assets/images/item-empty-img.png" alt="product" />
+                            </div> <a href="#" class="product__info">
+                                <div class="main__info">
+                                    <div class="title__category">
+                                        <span class="title">
+                                            Title
+                                        </span>
+                                        <span class="category">
+                                            category
+                                        </span>
+                                    </div>
+                                    <div class="price">
+                                        <span class="number">
+                                            1400
+                                        </span>
+                                        <span class="currency">EGP</span>
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="date__location">
+                                    <span class="date">
+                                        2022-5-3
+                                    </span>
+                                    <span class="location">
+                                        Egypt/cairo
+                                    </span>
+                                </div>
+                            </a>
                         </div>
                     </div>
-                    <div class="col-lg-3 px-2 mb-2">
-                        <div class="profile_card">
-                            <div class="card">
-                                <img src="./assets/images/1.png" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">Some quick example text to build on the card title and make up
-                                        the
-                                        bulk of the card's content.</p>
+                    <div class="col-lg-3 px-2 col_option mb-2">
+                        <div class="product card__product">
+                            <a href="#" class="add__to__fav">
+                                <i class="fas fa-star"></i>
+                            </a>
+                            <div class="card__product__img">
+                                <img class="product__img" src="./assets/images/item-empty-img.png" alt="product" />
+                            </div> <a href="#" class="product__info">
+                                <div class="main__info">
+                                    <div class="title__category">
+                                        <span class="title">
+                                            Title
+                                        </span>
+                                        <span class="category">
+                                            category
+                                        </span>
+                                    </div>
+                                    <div class="price">
+                                        <span class="number">
+                                            1400
+                                        </span>
+                                        <span class="currency">EGP</span>
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="date__location">
+                                    <span class="date">
+                                        2022-5-3
+                                    </span>
+                                    <span class="location">
+                                        Egypt/cairo
+                                    </span>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
