@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 04, 2022 at 01:57 AM
+-- Generation Time: Mar 05, 2022 at 07:23 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -48,7 +48,7 @@ CREATE TABLE `ads` (
 --
 
 INSERT INTO `ads` (`id`, `title`, `description`, `price`, `phone_number`, `images`, `added_date`, `governorate`, `item_status`, `publish_state`, `rating`, `user_id`, `category_id`) VALUES
-(1, 'Game of thrones book', 'an amazing book and very fantasy story', 120, '01154214028', NULL, '2022-03-02', 'cairo', 'new', 'published', 0, 1, 2),
+(1, 'Game of thrones', 'an amazing book and very fantasy story', 120, '01154214028', NULL, '2022-03-02', 'cairo', 'new', 'published', 0, 1, 2),
 (2, 'iPhone 13 pro max', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 16000, '01047587462', NULL, '2022-03-02', 'cairo', 'used', 'published', 0, 2, 3),
 (6, 'Samsung 20s', 'Samsung 20s description the desc', 9000, '01147587265', NULL, '2022-03-03', 'giza', 'new', 'published', 0, 1, 3),
 (7, 'IPhone 8 plus', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 4599, '01148735290', NULL, '2022-03-03', 'cairo', 'like new', 'published', 0, 1, 3),
@@ -69,24 +69,54 @@ INSERT INTO `ads` (`id`, `title`, `description`, `price`, `phone_number`, `image
 CREATE TABLE `categories` (
   `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
-  `description` text NOT NULL
+  `description` text NOT NULL,
+  `parent` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`id`, `title`, `description`) VALUES
-(1, 'fashion', 'fashion description'),
-(2, 'books', 'books description'),
-(3, 'phones', 'phones description'),
-(4, 'technology', 'technology desc'),
-(5, 'Kids', 'Kids desc'),
-(6, 'Vehicles', 'Vehicles desc'),
-(7, 'Beauty', 'Beauty desc'),
-(8, 'Sports', 'Sports desc'),
-(9, 'Accessories', 'Accessories desc'),
-(10, 'Computer & Laptop', 'Computer & Laptop desc');
+INSERT INTO `categories` (`id`, `title`, `description`, `parent`) VALUES
+(1, 'fashion', 'fashion description', 0),
+(2, 'books', 'books description', 0),
+(3, 'phones', 'phones description', 4),
+(4, 'technology', 'technology desc', 0),
+(5, 'Kids', 'Kids desc', 0),
+(6, 'Vehicles', 'Vehicles desc', 0),
+(7, 'Beauty', 'Beauty desc', 0),
+(8, 'Sports', 'Sports desc', 0),
+(9, 'Accessories', 'Accessories desc', 0),
+(10, 'Computer & Laptop', 'Computer & Laptop desc', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comments`
+--
+
+CREATE TABLE `comments` (
+  `id` int(11) NOT NULL,
+  `comment` text NOT NULL,
+  `comment_date` date NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `user_id` int(11) NOT NULL,
+  `ad_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`id`, `comment`, `comment_date`, `status`, `user_id`, `ad_id`) VALUES
+(1, 'Thank you', '2022-03-05', 1, 3, 2),
+(2, 'bla bla bla', '2022-03-05', 1, 3, 7),
+(3, 'Amazing', '2022-03-05', 1, 2, 2),
+(4, 'gameed', '2022-03-05', 1, 1, 11),
+(5, 'A Modern Introduction To Programming Lorem Ipsum Is Simply Dummy Text Of The Printing And Typesetting Industry. Lorem Ipsum Has Been The Industry&#38;#39;S Standard Dummy Text Ever Since The 1500s, When An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Specimen Book. It Has Survived Not Only Five Centuries, But Also The Leap Into Electronic Typesetting, Remaining Essentially Unchanged. It Was Popularised In The 1960s With The Release Of Letraset Sheets Containing Lorem Ipsum Passages, And More Recently With Desktop Publishing Software Like Aldus PageMaker Including Versions Of Lorem Ipsum.', '2022-03-05', 1, 1, 11),
+(6, 'كتاب جامد جدا', '2022-03-05', 1, 2, 8),
+(7, 'Thank you george r. r. &#60;3', '2022-03-05', 1, 3, 8),
+(8, 'جميل جدا', '2022-03-05', 1, 3, 13);
 
 -- --------------------------------------------------------
 
@@ -108,8 +138,8 @@ INSERT INTO `favorite` (`ad_id`, `user_id`) VALUES
 (8, 2),
 (9, 2),
 (14, 2),
-(10, 1),
-(13, 1);
+(13, 3),
+(14, 1);
 
 -- --------------------------------------------------------
 
@@ -120,6 +150,7 @@ INSERT INTO `favorite` (`ad_id`, `user_id`) VALUES
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
+  `fullname` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `reg_state` varchar(255) NOT NULL DEFAULT 'pending',
@@ -131,9 +162,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `password`, `reg_state`, `reg_date`, `country`) VALUES
-(1, 'youssef', 'youssef@gmail.com', '601f1889667efaebb33b8c12572835da3f027f78', 'registered', '2022-03-02', 'Egypt'),
-(2, 'abdo', 'abdo@gmail.com', '601f1889667efaebb33b8c12572835da3f027f78', 'pending', '2022-03-02', 'Egypt');
+INSERT INTO `users` (`id`, `username`, `fullname`, `email`, `password`, `reg_state`, `reg_date`, `country`) VALUES
+(1, 'youssef', 'Youssef Ahmed', 'youssef@gmail.com', '601f1889667efaebb33b8c12572835da3f027f78', 'registered', '2022-03-02', 'Egypt'),
+(2, 'abdo', 'Abdo Rabie', 'abdo@gmail.com', '601f1889667efaebb33b8c12572835da3f027f78', 'pending', '2022-03-02', 'Egypt'),
+(3, 'fatma', 'Fatma Ahmed', 'fatma@gmail.com', '601f1889667efaebb33b8c12572835da3f027f78', 'pending', '2022-03-04', 'Egypt');
 
 --
 -- Indexes for dumped tables
@@ -152,6 +184,14 @@ ALTER TABLE `ads`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `ad_id` (`ad_id`);
 
 --
 -- Indexes for table `favorite`
@@ -176,7 +216,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `ads`
 --
 ALTER TABLE `ads`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -185,10 +225,16 @@ ALTER TABLE `categories`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
+-- AUTO_INCREMENT for table `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
@@ -200,6 +246,13 @@ ALTER TABLE `users`
 ALTER TABLE `ads`
   ADD CONSTRAINT `ads_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `ads_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `comments`
+--
+ALTER TABLE `comments`
+  ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`ad_id`) REFERENCES `ads` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `favorite`
