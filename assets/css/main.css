@@ -1365,6 +1365,7 @@ table tr {
   height: 40vh;
   background-size: cover;
   background-position: center center;
+  object-fit: cover;
 }
 
 .middel_section {
@@ -1373,16 +1374,16 @@ table tr {
 }
 
 .middel_section_img {
-  width: fit-content;
+  text-align: center;
 }
 .middel_section img {
   width: 200px;
   height: 200px;
-  background-size: cover;
+  border: 6px solid white;
+  object-fit: cover;
   border-radius: 50%;
   transform: translateY(-87px);
-  margin-left: 38%;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.79);
+  border: 5px solid white;
 }
 .user_nameAnd_desc .media {
   display: flex;
@@ -1399,9 +1400,6 @@ table tr {
 .user_info_right {
   border: 1px solid #eee;
   box-shadow: 0 0 4px #eee;
-  padding: 35px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  border-radius: 4px;
 }
 .user_info_right div {
   margin: 10px 0;
@@ -1410,17 +1408,23 @@ table tr {
   display: flex;
 }
 .user_info_right .last_rating > div {
-  margin-left: 7px;
+  /* margin-left: 18px; */
+}
+.last_rating span {
+  color: #ffd727;
 }
 .user_info_right a {
-  color: black;
+  color: #777;
   margin-left: 5px;
+  font-size: 14px;
+}
+.user_info_right span {
+  width: 17px;
 }
 .user_info_right .chat_btn {
   padding: 10px 40px;
   display: block;
-  width: 200px;
-  max-width: 100%;
+  width: 100%;
   font-size: 18px;
   color: white;
   background-color: #3f3d56;
@@ -1454,6 +1458,9 @@ table tr {
   margin-top: 5px;
   cursor: pointer;
 }
+#dropdownMenuButton1 {
+  box-shadow: none;
+}
 .dropdown-toggle::after {
   display: none;
 }
@@ -1471,9 +1478,14 @@ table tr {
 .card__product__img {
   overflow: hidden;
 }
+
 .flex_icon i,
-.gird_icon i {
+.grid_icon i {
   font-size: 33px;
+  cursor: pointer;
+}
+.hide_icon {
+  display: none;
 }
 
 .comments-section .top-head {

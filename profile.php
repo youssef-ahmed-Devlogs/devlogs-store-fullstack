@@ -23,22 +23,9 @@ include './init.php';
                 </div>
                 <div class="col-lg-9">
                     <div class="user_nameAnd_desc">
-                        <h3>jone Done</h3>
-                        <p>Lorem ipsum dolor sit amet.</p>
-                        <div class="media">
-                            <div>
-                                <span><i class="fas fa-phone"></i></span>
-                                <a href="#">obour</a>
-                            </div>
-                            <div>
-                                <i class="fas fa-location-arrow"></i>
-                                <a href="#">obour</a>
-                            </div>
-                            <div>
-                                <i class="fas fa-envelope"></i>
-                                <a href="#">abdorabie</a>
-                            </div>
-                        </div>
+                        <h3 class="m-0">jone Done</h3>
+                        <p class="mt-0">Lorem ipsum dolor sit amet.</p>
+
                         <div class="menue_alien">
                             <div class="dropdown">
                                 <button class="btn btn dropdown-toggle" type="button" id="dropdownMenuButton1"
@@ -51,7 +38,6 @@ include './init.php';
                                     <li><a class="dropdown-item" href="#">Something else here</a></li>
                                 </ul>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -60,24 +46,21 @@ include './init.php';
         </div>
         <div class="row">
             <div class="col-lg-3">
-                <div class="user_info_right">
+                <div class="user_info_right box_style_content">
                     <div class="d-flex">
-                        <span><i class="fas fa-phone"></i></span>
-                        <a href="#">0111 89 332 54</a>
+                        <span class="mr-1"><i class="fas fa-mobile-alt"></i></span>
+                        <a href="tel:01118933254">0111 89 332 54</a>
                     </div>
                     <div class="d-flex">
-
-                        <a href="#">+11 89 332 54</a>
-                    </div>
-                    <div class="d-flex">
-                        <span><i class="fas fa-mail"></i></span>
-                        <a href="#">0111 89 332 54</a>
+                        <span><i class="fas fa-envelope"></i></span>
+                        <a href="mailto:abdoRaibe.6a@gmail.com">abdoRaibe.6a@gmail.com</a>
                     </div>
                     <button class="chat_btn"><i class="fas fa-comment"></i> caht</button>
                     <div class="last_rating">
-                        <h3>4.5</h3>
                         <div>
-                            <div>1312 reviwes</div>
+                            <span><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i> <i class="fas fa-star"></i> </span>
+                            <div class="mt-0">1312 reviwes</div>
                         </div>
                     </div>
                 </div>
@@ -85,12 +68,12 @@ include './init.php';
             </div>
             <div class="col-lg-9">
                 <div class="row">
-                    <div class="flex_icon">
+                    <div class="flex_icon mb-2" id="flex_icon">
                         <i class="fas fa-list"></i>
                     </div>
-                    <div class="grid_icon">
-                        <i class="fas fa-th" id="grid_icon"></i>
-                    </div>
+                    <!-- <div class="grid_icon" id="grid_icon">
+                        <i class="fas fa-th"></i>
+                    </div> -->
                     <div class="col-lg-3 px-2 col_option mb-2">
                         <div class="product card__product">
                             <a href="#" class="add__to__fav">

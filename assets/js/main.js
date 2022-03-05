@@ -185,13 +185,13 @@ requiredInputs.forEach((item) => {
   console.log(formGroup);
 });
 
-const gridIcon = document.getElementById("grid_icon");
+const flexIcon = document.getElementById("flex_icon");
 const colOption = document.querySelectorAll(".col_option");
 const product_card = document.querySelectorAll(".card__product");
 
-gridIcon.addEventListener("click", changLayout);
-
-function changLayout() {
+flexIcon.addEventListener("click", changLayout);
+function changLayout(e) {
+  e.target.classList.toggle("fa-th");
   colOption.forEach((item) => {
     item.classList.toggle("col-lg-12");
   });
