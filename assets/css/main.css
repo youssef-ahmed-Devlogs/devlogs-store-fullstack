@@ -1524,3 +1524,19 @@ table tr {
 .categories__section .sub-category-list a {
   padding-left: 20px;
 }
+
+.categories__section .sub-category-list a {
+  position: relative;
+}
+
+.categories__section .sub-category-list a::after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #3f3d56;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
