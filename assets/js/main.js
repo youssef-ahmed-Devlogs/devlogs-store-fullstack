@@ -207,7 +207,7 @@ const cardPrdouctEdited = formPreview.querySelector(".card__product");
 
 let TitleSpan = cardPrdouctEdited.querySelector(".title");
 let DescSpan = cardPrdouctEdited.querySelector(".desc");
-let PriceSpan = cardPrdouctEdited.querySelector(".price");
+let PriceSpan = cardPrdouctEdited.querySelector(".price .number");
 let qateogrySpan = cardPrdouctEdited.querySelector(".category");
 let locationSpan = cardPrdouctEdited.querySelector(".location");
 const EditedDate = cardPrdouctEdited.querySelector(".date");
@@ -219,44 +219,22 @@ const EditQategory = formPreview.category;
 const Editgovernorate = formPreview.governorate;
 // EditTitle.addEventListener("input", livePreivew);
 EditTitle.addEventListener("input", (e) => {
-  Livepriew(e.target.value, TitleSpan);
+  Livepriew(e.target.value, TitleSpan, "Title");
 });
 
 EditedDesc.addEventListener("input", (e) => {
-  Livepriew(e.target.value, DescSpan);
+  Livepriew(e.target.value, DescSpan, "Description written here");
 });
 EditedPrice.addEventListener("change", (e) => {
-  Livepriew(e.target.value, PriceSpan);
+  Livepriew(e.target.value, PriceSpan, 100);
 });
-
-// EditQategory.addEventListener("change", liveQatePrev);
 
 Editgovernorate.addEventListener("change", (e) => {
-  Livepriew(e.target.value, locationSpan);
+  Livepriew("Egypt/" + e.target.value, locationSpan, "Egypt/cairo");
 });
-// function livePreivew(e) {
-//   let savedTitle = e.target.value;
-//   TitleSpan.innerHTML = savedTitle;
-// }
 
-// function liveDescPrev(e) {
-//   DescSpan.innerHTML = e.target.value;
-// }
-
-// function livePricePrev(e) {
-//   PriceSpan.innerHTML = e.target.value;
-// }
-
-// function liveQatePrev(e) {
-//   qateogrySpan.innerHTML = e.target.value;
-// }
-
-// function liveGovernate(e) {
-//   locationSpan.innerHTML = e.target.value;
-// }
-
-function Livepriew(value, ele) {
-  ele.innerHTML = value;
+function Livepriew(value, ele, def) {
+  ele.innerHTML = value == "" ? def : value;
 }
 
 let date = new Date();

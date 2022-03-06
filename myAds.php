@@ -189,7 +189,8 @@ if (isset($_SESSION['username'])) {
                 ?>
         <h1 class="section__head-xl mb-5">Add Ad</h1>
 
-        <form action="?action=insert" method="POST" enctype="multipart/form-data">
+        <form action="?action=insert" id="from_preview" class="needs-validation" method="POST"
+            enctype="multipart/form-data" novalidate>
 
             <div class="row">
                 <div class="col-xl-8 mb-4">
@@ -197,35 +198,47 @@ if (isset($_SESSION['username'])) {
                         <div class="col-12 mb-3">
                             <div class="form-group">
                                 <label for="title">Title</label>
-                                <input type="text" name="title" id="title" class="form-control mt-1"
-                                    placeholder="Title">
+                                <input type="text" name="title" id="title" class="form-control mt-1" placeholder="Title"
+                                    required>
+                                <div class="invalid-feedback">
+                                    Please choose a username.
+                                </div>
                             </div>
                         </div>
                         <div class="col-12 mb-3">
                             <div class="form-group">
                                 <label for="desc">Description</label>
                                 <textarea name="desc" id="desc" class="form-control mt-1" placeholder="Description"
-                                    cols="30" rows="10"></textarea>
+                                    cols="30" rows="10" required></textarea>
+                                <div class="invalid-feedback">
+                                    Please choose a username.
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-6 mb-3">
                             <div class="form-group">
                                 <label for="price">Price</label>
                                 <input type="number" name="price" id="price" class="form-control mt-1"
-                                    placeholder="Price">
+                                    placeholder="Price" required>
+                                <div class="invalid-feedback">
+                                    Please choose a username.
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-6 mb-3">
                             <div class="form-group">
                                 <label for="phone_number">phone Number</label>
                                 <input type="number" name="phone_number" id="phone_number" class="form-control mt-1"
-                                    placeholder="Phone Number">
+                                    placeholder="Phone Number" required>
+                                <div class="invalid-feedback">
+                                    Please choose a username.
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-6 mb-3">
                             <div class="form-group">
                                 <label for="governorate">Governorate</label>
-                                <select name="governorate" id="governorate" class="form-control mt-1">
+                                <select name="governorate" id="governorate" class="form-control mt-1" required>
                                     <option value="">
                                         Select
                                     </option>
@@ -239,12 +252,15 @@ if (isset($_SESSION['username'])) {
                                         Alex
                                     </option>
                                 </select>
+                                <div class="invalid-feedback">
+                                    Please choose a username.
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-6 mb-3">
                             <div class="form-group">
                                 <label for="item_status">Item Status</label>
-                                <select name="item_status" id="item_status" class="form-control mt-1">
+                                <select name="item_status" id="item_status" class="form-control mt-1" required>
                                     <option value="">
                                         Select
                                     </option>
@@ -258,12 +274,15 @@ if (isset($_SESSION['username'])) {
                                         Used
                                     </option>
                                 </select>
+                                <div class="invalid-feedback">
+                                    Please choose a username.
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-6 mb-3">
                             <div class="form-group">
                                 <label for="category">Category</label>
-                                <select name="category" id="category" class="form-control mt-1">
+                                <select name="category" id="category" class="form-control mt-1" required>
                                     <option value="">
                                         Select
                                     </option>
@@ -279,6 +298,9 @@ if (isset($_SESSION['username'])) {
                                     </option>
                                     <?php } ?>
                                 </select>
+                                <div class="invalid-feedback">
+                                    Please choose a username.
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-6 mb-3">
@@ -288,11 +310,12 @@ if (isset($_SESSION['username'])) {
                                     <i class="fas fa-image"></i>
                                     Upload Image
                                 </label>
-                                <input type="file" name="ad_image" id="ad_image" class="form-control mt-1">
+                                <input type="file" name="ad_image" id="ad_image" class="form-control mt-1" required>
+                                <div class="invalid-feedback">
+                                    Please choose a username.
+                                </div>
                             </div>
                         </div>
-
-
                     </div>
                     <button class="btn btn-primary">Add</button>
                 </div>
