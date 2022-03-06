@@ -1525,12 +1525,11 @@ table tr {
   padding-left: 20px;
 }
 
-<<<<<<< HEAD
 @media (max-width: 991px) {
   .updated_col {
     transform: translateY(-44px);
   }
-=======
+}
 .categories__section .sub-category-list a {
   position: relative;
 }
@@ -1545,5 +1544,4 @@ table tr {
   width: 5px;
   height: 5px;
   border-radius: 50%;
->>>>>>> acdd601964ee356cf52311212ef5ab63cce51fb6
 }
