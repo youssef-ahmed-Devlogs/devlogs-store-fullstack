@@ -1524,3 +1524,9 @@ table tr {
 .categories__section .sub-category-list a {
   padding-left: 20px;
 }
+
+@media (max-width: 991px) {
+  .updated_col {
+    transform: translateY(-44px);
+  }
+}

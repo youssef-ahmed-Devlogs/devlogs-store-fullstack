@@ -21,7 +21,7 @@ include './init.php';
                         <img src="assets/images/user-pic1.jpg" alt="">
                     </div>
                 </div>
-                <div class="col-lg-9">
+                <div class="col-lg-9 updated_col">
                     <div class="user_nameAnd_desc">
                         <h3 class="m-0">jone Done</h3>
                         <p class="mt-0">Lorem ipsum dolor sit amet.</p>
@@ -44,7 +44,7 @@ include './init.php';
             </div>
 
         </div>
-        <div class="row">
+        <div class="row updated_col">
             <div class="col-lg-3">
                 <div class="user_info_right box_style_content">
                     <div class="d-flex">
