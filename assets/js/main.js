@@ -202,10 +202,69 @@ if (document.querySelector(".profile_page") !== null) {
   }
 }
 
-const addTitle = document.getElementById("title");
-console.log(addTitle);
+const formPreview = document.getElementById("from_preview");
+const cardPrdouctEdited = formPreview.querySelector(".card__product");
 
+let TitleSpan = cardPrdouctEdited.querySelector(".title");
+let DescSpan = cardPrdouctEdited.querySelector(".desc");
+let PriceSpan = cardPrdouctEdited.querySelector(".price");
+let qateogrySpan = cardPrdouctEdited.querySelector(".category");
+let locationSpan = cardPrdouctEdited.querySelector(".location");
+const EditedDate = cardPrdouctEdited.querySelector(".date");
+
+const EditTitle = formPreview.title;
+const EditedDesc = formPreview.desc;
+const EditedPrice = formPreview.price;
+const EditQategory = formPreview.category;
+const Editgovernorate = formPreview.governorate;
+// EditTitle.addEventListener("input", livePreivew);
+EditTitle.addEventListener("input", (e) => {
+  Livepriew(e.target.value, TitleSpan);
+});
+
+EditedDesc.addEventListener("input", (e) => {
+  Livepriew(e.target.value, DescSpan);
+});
+EditedPrice.addEventListener("change", (e) => {
+  Livepriew(e.target.value, PriceSpan);
+});
+
+// EditQategory.addEventListener("change", liveQatePrev);
+
+Editgovernorate.addEventListener("change", (e) => {
+  Livepriew(e.target.value, locationSpan);
+});
 // function livePreivew(e) {
-//   console.log(e.target.value);
+//   let savedTitle = e.target.value;
+//   TitleSpan.innerHTML = savedTitle;
 // }
-// livePreivew();
+
+// function liveDescPrev(e) {
+//   DescSpan.innerHTML = e.target.value;
+// }
+
+// function livePricePrev(e) {
+//   PriceSpan.innerHTML = e.target.value;
+// }
+
+// function liveQatePrev(e) {
+//   qateogrySpan.innerHTML = e.target.value;
+// }
+
+// function liveGovernate(e) {
+//   locationSpan.innerHTML = e.target.value;
+// }
+
+function Livepriew(value, ele) {
+  ele.innerHTML = value;
+}
+
+let date = new Date();
+const year = date.getFullYear();
+const month = date.getMonth() < 10 ? "0" + date.getMonth() : date.getMonth();
+const day =
+  date.getUTCDate() < 10 ? "0" + date.getUTCDate() : date.getUTCDate();
+
+date = `${year}-${month}-${day}`;
+console.log(date);
+EditedDate.innerHTML = date;

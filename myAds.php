@@ -182,7 +182,7 @@ if (isset($_SESSION['username'])) {
         ?>
         <h1 class="section__head-xl mb-5">Add Ad</h1>
 
-        <form action="?action=insert" method="POST">
+        <form action="?action=insert" class="needs-validation" id="from_preview" method="POST" novalidate>
 
             <div class="row">
                 <div class="col-xl-8 mb-4">
@@ -190,35 +190,47 @@ if (isset($_SESSION['username'])) {
                         <div class="col-12 mb-3">
                             <div class="form-group">
                                 <label for="title">Title</label>
-                                <input type="text" name="title" id="title" class="form-control mt-1"
-                                    placeholder="Title">
+                                <input type="text" name="title" id="title" class="form-control mt-1" placeholder="Title"
+                                    required>
+                                <div class="invalid-feedback">
+                                    Please choose a Title.
+                                </div>
                             </div>
                         </div>
                         <div class="col-12 mb-3">
                             <div class="form-group">
                                 <label for="desc">Description</label>
                                 <textarea name="desc" id="desc" class="form-control mt-1" placeholder="Description"
-                                    cols="30" rows="10"></textarea>
+                                    cols="30" rows="10" required></textarea>
+                                <div class="invalid-feedback">
+                                    Please choose a Title.
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-6 mb-3">
                             <div class="form-group">
                                 <label for="price">Price</label>
                                 <input type="number" name="price" id="price" class="form-control mt-1"
-                                    placeholder="Price">
+                                    placeholder="Price" required>
+                                <div class="invalid-feedback">
+                                    Please choose a price
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-6 mb-3">
                             <div class="form-group">
                                 <label for="phone_number">phone Number</label>
                                 <input type="number" name="phone_number" id="phone_number" class="form-control mt-1"
-                                    placeholder="Phone Number">
+                                    placeholder="Phone Number" required>
+                                <div class="invalid-feedback">
+                                    Please choose a price
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-6 mb-3">
                             <div class="form-group">
                                 <label for="governorate">Governorate</label>
-                                <select name="governorate" id="governorate" class="form-control mt-1">
+                                <select name="governorate" id="governorate" class="form-control mt-1" required>
                                     <option value="">
                                         Select
                                     </option>
@@ -232,6 +244,9 @@ if (isset($_SESSION['username'])) {
                                         Alex
                                     </option>
                                 </select>
+                                <div class="invalid-feedback">
+                                    Please choose a governate
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-6 mb-3">
@@ -251,6 +266,9 @@ if (isset($_SESSION['username'])) {
                                         Used
                                     </option>
                                 </select>
+                                <div class="invalid-feedback">
+                                    Please choose a price
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-6 mb-3">
