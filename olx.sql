@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 05, 2022 at 07:23 PM
+-- Generation Time: Mar 06, 2022 at 06:10 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -33,7 +33,7 @@ CREATE TABLE `ads` (
   `description` text DEFAULT NULL,
   `price` int(11) NOT NULL,
   `phone_number` varchar(255) DEFAULT NULL,
-  `images` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
   `added_date` date NOT NULL,
   `governorate` varchar(255) NOT NULL DEFAULT 'Cairo',
   `item_status` varchar(255) DEFAULT 'new',
@@ -47,7 +47,7 @@ CREATE TABLE `ads` (
 -- Dumping data for table `ads`
 --
 
-INSERT INTO `ads` (`id`, `title`, `description`, `price`, `phone_number`, `images`, `added_date`, `governorate`, `item_status`, `publish_state`, `rating`, `user_id`, `category_id`) VALUES
+INSERT INTO `ads` (`id`, `title`, `description`, `price`, `phone_number`, `image`, `added_date`, `governorate`, `item_status`, `publish_state`, `rating`, `user_id`, `category_id`) VALUES
 (1, 'Game of thrones', 'an amazing book and very fantasy story', 120, '01154214028', NULL, '2022-03-02', 'cairo', 'new', 'published', 0, 1, 2),
 (2, 'iPhone 13 pro max', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 16000, '01047587462', NULL, '2022-03-02', 'cairo', 'used', 'published', 0, 2, 3),
 (6, 'Samsung 20s', 'Samsung 20s description the desc', 9000, '01147587265', NULL, '2022-03-03', 'giza', 'new', 'published', 0, 1, 3),
@@ -58,7 +58,7 @@ INSERT INTO `ads` (`id`, `title`, `description`, `price`, `phone_number`, `image
 (11, 'Eloquent Javascript - Third Edition', 'A modern introduction to programming&#13;&#10;Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#38;#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 200, '01147284980', NULL, '2022-03-03', 'cairo', 'new', 'published', 0, 2, 2),
 (12, 'Samsung s6 white', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#38;#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 1400, '01037462532', NULL, '2022-03-03', 'alex', 'used', 'published', 0, 2, 3),
 (13, 'Keyboard Gaming RGB', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#38;#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 89, '01156398462', NULL, '2022-03-03', 'giza', 'used', 'published', 0, 1, 10),
-(14, 'Gaming Mouse RGB', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#38;#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 99, '01164892645', NULL, '2022-03-03', 'giza', 'used', 'published', 0, 1, 10);
+(14, 'Gaming Mouse RGB', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#38;#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 99, '01164892645', NULL, '2022-03-03', 'giza', 'used', 'published', 0, 1, 4);
 
 -- --------------------------------------------------------
 
@@ -139,7 +139,28 @@ INSERT INTO `favorite` (`ad_id`, `user_id`) VALUES
 (9, 2),
 (14, 2),
 (13, 3),
-(14, 1);
+(14, 1),
+(11, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `slider`
+--
+
+CREATE TABLE `slider` (
+  `id` int(11) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `ordering` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `slider`
+--
+
+INSERT INTO `slider` (`id`, `image`, `ordering`) VALUES
+(1, 'olx-image-141212600010709367.jpg', 0),
+(2, 'olx-image-651464000122222.jpg', 0);
 
 -- --------------------------------------------------------
 
@@ -151,6 +172,8 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `fullname` varchar(255) NOT NULL,
+  `profile_image` varchar(255) NOT NULL,
+  `cover_image` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `reg_state` varchar(255) NOT NULL DEFAULT 'pending',
@@ -162,10 +185,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `fullname`, `email`, `password`, `reg_state`, `reg_date`, `country`) VALUES
-(1, 'youssef', 'Youssef Ahmed', 'youssef@gmail.com', '601f1889667efaebb33b8c12572835da3f027f78', 'registered', '2022-03-02', 'Egypt'),
-(2, 'abdo', 'Abdo Rabie', 'abdo@gmail.com', '601f1889667efaebb33b8c12572835da3f027f78', 'pending', '2022-03-02', 'Egypt'),
-(3, 'fatma', 'Fatma Ahmed', 'fatma@gmail.com', '601f1889667efaebb33b8c12572835da3f027f78', 'pending', '2022-03-04', 'Egypt');
+INSERT INTO `users` (`id`, `username`, `fullname`, `profile_image`, `cover_image`, `email`, `password`, `reg_state`, `reg_date`, `country`) VALUES
+(1, 'youssef', 'Youssef Ahmed', '', '', 'youssef@gmail.com', '601f1889667efaebb33b8c12572835da3f027f78', 'registered', '2022-03-02', 'Egypt'),
+(2, 'abdo', 'Abdo Rabie', '', '', 'abdo@gmail.com', '601f1889667efaebb33b8c12572835da3f027f78', 'pending', '2022-03-02', 'Egypt'),
+(3, 'fatma', 'Fatma Ahmed', '', '', 'fatma@gmail.com', '601f1889667efaebb33b8c12572835da3f027f78', 'pending', '2022-03-04', 'Egypt');
 
 --
 -- Indexes for dumped tables
@@ -201,6 +224,12 @@ ALTER TABLE `favorite`
   ADD KEY `ad_id` (`ad_id`);
 
 --
+-- Indexes for table `slider`
+--
+ALTER TABLE `slider`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -229,6 +258,12 @@ ALTER TABLE `categories`
 --
 ALTER TABLE `comments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `slider`
+--
+ALTER TABLE `slider`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
