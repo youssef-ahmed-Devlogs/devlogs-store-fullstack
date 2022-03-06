@@ -3,15 +3,13 @@
 ob_start();
 session_start();
 
-$pageTitle = "Homepage";
+$pageTitle = "Profile";
 include './init.php';
 
 
 if (isset($_SESSION['username']) && isset($_GET['userId'])) {
 
     $userId = is_numeric($_GET['userId']) ? intval($_GET['userId']) : 0;
-
-
 
     $stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
     $stmt->execute([$userId]);
@@ -46,18 +44,6 @@ if (isset($_SESSION['username']) && isset($_GET['userId'])) {
                                     @<?php echo $user['username'] ?>
                                 </p>
 
-                                <div class="menue_alien">
-                                    <div class="dropdown">
-                                        <button class="btn btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-h"></i>
-                                        </button>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                            <li><a class="dropdown-item" href="#">Action</a></li>
-                                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -67,7 +53,7 @@ if (isset($_SESSION['username']) && isset($_GET['userId'])) {
                     <div class="col-lg-3">
                         <div class="user_info_right box_style_content">
                             <div class="d-flex">
-                                <span class="mr-1"><i class="fas fa-mobile-alt"></i></span>
+                                <span class="mr-1"><i class="fas fa-map-marker-alt"></i></span>
                                 <a>
                                     <?php echo $user['country'] ?>
                                 </a>
@@ -78,6 +64,7 @@ if (isset($_SESSION['username']) && isset($_GET['userId'])) {
                                     <?php echo $user['email'] ?>
                                 </a>
                             </div>
+
                             <button class="chat_btn"><i class="fas fa-comment"></i> caht</button>
                             <div class="last_rating">
                                 <div>
@@ -86,6 +73,52 @@ if (isset($_SESSION['username']) && isset($_GET['userId'])) {
                                 </div>
                             </div>
                         </div>
+
+                        <!-- START CATEGORIES SECTION -->
+
+                        <div class="categories__section mt-4">
+                            <h2 class="section__head-sm">Categories</h2>
+                            <ul class="categories__list">
+                                <?php
+                                $stmt = $conn->prepare("SELECT * FROM categories WHERE parent = 0");
+                                $stmt->execute();
+                                $categories = $stmt->fetchAll();
+
+                                foreach ($categories as $category) {
+                                    ?>
+
+                                    <li>
+                                        <a href="categories.php?id=<?php echo $category['id'] ?>">
+                                            <?php echo $category['title'] ?>
+                                        </a>
+
+                                        <ul class="sub-category-list">
+
+                                            <?php
+
+                                            $stmt = $conn->prepare("SELECT * FROM categories WHERE parent = ?");
+                                            $stmt->execute([$category['id']]);
+                                            $subCategories = $stmt->fetchAll();
+
+
+                                            foreach ($subCategories as $subCategory) {
+                                                ?>
+
+                                                <li>
+                                                    <a href="categories.php?id=<?php echo $subCategory['id'] ?>">
+                                                        <?php echo $subCategory['title'] ?>
+                                                    </a>
+                                                </li>
+
+                                            <?php } ?>
+                                        </ul>
+                                    </li>
+
+                                <?php } ?>
+                            </ul>
+                        </div>
+
+                        <!-- END CATEGORIES SECTION-->
 
                     </div>
                     <div class="col-lg-9">
@@ -169,6 +202,101 @@ if (isset($_SESSION['username']) && isset($_GET['userId'])) {
                                 <?php } ?>
                             </div>
                         </div>
+
+                        <div class="products__content mt-3">
+                            <h2 class="section__head mt-4">Another Ads</h2>
+                            <div class="swiper another__products swiper__container">
+                                <div class="swiper__navigation">
+                                    <div class="another__products-prev prev">
+                                        <i class="fas fa-arrow-left"></i>
+                                    </div>
+                                    <div class="another__products-next next">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </div>
+                                </div>
+                                <div class="swiper-wrapper">
+                                    <?php
+
+                                    $stmt = $conn->prepare("SELECT
+                                            ads.*,
+                                            ads.id AS ad_id,
+                                            users.country,
+                                            categories.title AS category_title
+                                        FROM ads
+                                        JOIN categories ON categories.id = ads.category_id
+                                        JOIN users ON users.id = ads.user_id
+                                        WHERE ads.publish_state = 'published'
+                                        ORDER BY ads.id DESC LIMIT 15
+                                    ");
+                                    $stmt->execute();
+                                    $another_ads = $stmt->fetchAll();
+
+
+                                    foreach ($another_ads as $another_ad) {
+                                        ?>
+                                        <div class="swiper-slide">
+                                            <div class="product card__product">
+                                                <?php
+                                                if (isset($_SESSION['username'])) {
+
+                                                    $stmt = $conn->prepare("SELECT * FROM favorite WHERE ad_id = ? AND user_id = ?");
+                                                    $stmt->execute([$another_ad['ad_id'], $_SESSION['id']]);
+                                                    $inFav = $stmt->rowCount();
+
+                                                    ?>
+                                                    <a href="favourite.php?action=add&adid=<?php echo $another_ad['ad_id'] ?>" class="add__to__fav <?php echo $inFav == 1 ? 'active' : '' ?>">
+                                                        <i class="fas fa-star"></i>
+                                                    </a>
+                                                <?php } else { ?>
+                                                    <a href="login.php" class="add__to__fav">
+                                                        <i class="fas fa-star"></i>
+                                                    </a>
+                                                    <?php
+                                                }
+                                                ?>
+
+
+                                                <!-- Image -->
+                                                <?php if(!empty($another_ad['image'])) { ?>
+                                                    <img class="product__img" src="./uploads/ads/<?php echo $another_ad['image'] ?>" alt="product" />
+                                                <?php } else { ?>
+                                                    <img class="product__img" src="./assets/images/item-empty-img.png" alt="product" />
+                                                <?php }?>
+                                                <a href="showAd.php?id=<?php echo $another_ad['ad_id'] ?>" class="product__info">
+                                                    <div class="main__info">
+                                                        <div class="title__category">
+                                                        <span class="title">
+                                                            <?php echo strlen($another_ad['title']) > 15 ? substr($another_ad['title'], 0, 14) . "..." : $another_ad['title'] ?>
+                                                        </span>
+                                                            <span class="category">
+                                                            <?php echo $another_ad['category_title'] ?>
+                                                        </span>
+                                                        </div>
+                                                        <div class="price">
+                                                        <span class="number">
+                                                            <?php echo $another_ad['price'] ?>
+                                                        </span>
+                                                            <span class="currency">EGP</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="date__location">
+                                                    <span class="date">
+                                                        <?php echo $another_ad['added_date'] ?>
+                                                    </span>
+                                                        <span class="location">
+                                                        <?php echo $another_ad['country'] . '/' . $another_ad['governorate'] ?>
+                                                    </span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    <?php } ?>
+                                </div>
+
+                                <div class="another__products-pagination swiper__pagination"></div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>

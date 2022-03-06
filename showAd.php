@@ -215,7 +215,12 @@ if (isset($_SESSION['username'])) {
                                                     ?>
 
 
-                                                    <img class="product__img" src="./assets/images/item-empty-img.png" alt="product" />
+                                                    <!-- Image -->
+                                                    <?php if(!empty($user_ads['image'])) { ?>
+                                                        <img class="product__img" src="./uploads/ads/<?php echo $user_ads['image'] ?>" alt="product" />
+                                                    <?php } else { ?>
+                                                        <img class="product__img" src="./assets/images/item-empty-img.png" alt="product" />
+                                                    <?php }?>
                                                     <a href="showAd.php?id=<?php echo $user_ads['ad_id'] ?>" class="product__info">
                                                         <div class="main__info">
                                                             <div class="title__category">
@@ -302,19 +307,43 @@ if (isset($_SESSION['username'])) {
 
                             <!-- START CATEGORIES SECTION -->
 
-                            <div class="categories__section mt-3">
+                            <div class="categories__section mt-4">
                                 <h2 class="section__head-sm">Categories</h2>
                                 <ul class="categories__list">
                                     <?php
-                                    $stmt = $conn->prepare("SELECT * FROM categories");
+                                    $stmt = $conn->prepare("SELECT * FROM categories WHERE parent = 0");
                                     $stmt->execute();
                                     $categories = $stmt->fetchAll();
 
                                     foreach ($categories as $category) {
-                                    ?>
-                                        <a href="categories.php?id=<?php echo $category['id'] ?>">
-                                            <?php echo $category['title'] ?>
-                                        </a>
+                                        ?>
+
+                                        <li>
+                                            <a href="categories.php?id=<?php echo $category['id'] ?>">
+                                                <?php echo $category['title'] ?>
+                                            </a>
+
+                                            <ul class="sub-category-list">
+
+                                                <?php
+
+                                                $stmt = $conn->prepare("SELECT * FROM categories WHERE parent = ?");
+                                                $stmt->execute([$category['id']]);
+                                                $subCategories = $stmt->fetchAll();
+
+
+                                                foreach ($subCategories as $subCategory) {
+                                                    ?>
+
+                                                    <li>
+                                                        <a href="categories.php?id=<?php echo $subCategory['id'] ?>">
+                                                            <?php echo $subCategory['title'] ?>
+                                                        </a>
+                                                    </li>
+
+                                                <?php } ?>
+                                            </ul>
+                                        </li>
 
                                     <?php } ?>
                                 </ul>
@@ -379,7 +408,12 @@ if (isset($_SESSION['username'])) {
                                             ?>
 
 
-                                            <img class="product__img" src="./assets/images/item-empty-img.png" alt="product" />
+                                            <!-- Image -->
+                                            <?php if(!empty($another_ad['image'])) { ?>
+                                                <img class="product__img" src="./uploads/ads/<?php echo $another_ad['image'] ?>" alt="product" />
+                                            <?php } else { ?>
+                                                <img class="product__img" src="./assets/images/item-empty-img.png" alt="product" />
+                                            <?php }?>
                                             <a href="showAd.php?id=<?php echo $another_ad['ad_id'] ?>" class="product__info">
                                                 <div class="main__info">
                                                     <div class="title__category">

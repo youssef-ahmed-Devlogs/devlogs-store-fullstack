@@ -84,8 +84,7 @@
 
               <ul class="user-settings-list">
 
-
-                <a href="profile.php" class="user-settings-link">
+                <a href="myProfile.php" class="user-settings-link">
                   <div class="user">
                     <div class="user-icon">
                       <img src="./assets/images/user-pic1.jpg" alt="user picture" title="user picture" />
