@@ -12,15 +12,20 @@ include './init.php';
   <!-- Swiper -->
   <div class="swiper home__slider">
     <div class="swiper-wrapper">
-      <div class="swiper-slide">
-        <img src="./assets/images/home_slider1.jpeg" alt="home slider" />
-      </div>
-      <div class="swiper-slide">
-        <img src="./assets/images/home_slider2.jpg" alt="home slider" />
-      </div>
-      <div class="swiper-slide">
-        <img src="./assets/images/home_slider1.jpeg" alt="home slider" />
-      </div>
+
+        <?php
+
+            $stmt = $conn->prepare("SELECT * FROM slider");
+            $stmt->execute();
+            $slider = $stmt->fetchAll();
+
+            foreach ($slider as $slide) {
+        ?>
+              <div class="swiper-slide">
+                <img src="<?php echo './admin/uploads/' . $slide['image'] ?>" alt="home slider" />
+              </div>
+        <?php } ?>
+
     </div>
     <div class="swiper-button-next home__slider-next"></div>
     <div class="swiper-button-prev home__slider-prev"></div>

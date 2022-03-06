@@ -90,7 +90,8 @@ ul {
 }
 
 .section__head,
-.section__head-sm {
+.section__head-sm,
+.section__head-xl {
   font-size: 28px;
   position: relative;
   padding-bottom: 10px;
@@ -101,7 +102,8 @@ ul {
 }
 
 .section__head::after,
-.section__head-sm::after {
+.section__head-sm::after,
+.section__head-xl::after {
   content: "";
   position: absolute;
   left: 0;
@@ -110,14 +112,8 @@ ul {
   height: 3px;
   width: 70%;
 }
-
-.section__head-sm {
-  font-size: 18px;
-  padding-bottom: 5px;
-}
-
-.section__head-sm::after {
-  height: 2px;
+.section__head-xl {
+  font-size: 40px;
 }
 
 .swiper__container {
@@ -1146,4 +1142,9 @@ header .user-settings .user {
   align-items: center;
   justify-content: center;
   gap: 15px;
+}
+
+.section {
+  margin-top: 130px;
+  margin-bottom: 70px;
 }
