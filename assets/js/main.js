@@ -185,17 +185,27 @@ requiredInputs.forEach((item) => {
   console.log(formGroup);
 });
 
-const flexIcon = document.getElementById("flex_icon");
-const colOption = document.querySelectorAll(".col_option");
-const product_card = document.querySelectorAll(".card__product");
+if (document.querySelector(".profile_page") !== null) {
+  const flexIcon = document.getElementById("flex_icon");
+  const colOption = document.querySelectorAll(".col_option");
+  const product_card = document.querySelectorAll(".card__product");
 
-flexIcon.addEventListener("click", changLayout);
-function changLayout(e) {
-  e.target.classList.toggle("fa-th");
-  colOption.forEach((item) => {
-    item.classList.toggle("col-lg-12");
-  });
-  product_card.forEach((i) => {
-    i.classList.toggle("card__product_row");
-  });
+  flexIcon.addEventListener("click", changLayout);
+  function changLayout(e) {
+    e.target.classList.toggle("fa-th");
+    colOption.forEach((item) => {
+      item.classList.toggle("col-lg-12");
+    });
+    product_card.forEach((i) => {
+      i.classList.toggle("card__product_row");
+    });
+  }
 }
+
+const addTitle = document.getElementById("title");
+console.log(addTitle);
+
+// function livePreivew(e) {
+//   console.log(e.target.value);
+// }
+// livePreivew();
