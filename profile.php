@@ -24,7 +24,7 @@ if (isset($_SESSION['username']) && isset($_GET['userId'])) {
         ?>
 
         <!-- START MAIN SECTION -->
-        <main>
+        <main class="profile_page">
             <!-- Swiper -->
             <div class="profile_bg_section">
                 <img src="./assets/images/sider.jpg " class="bg_img" alt="">
