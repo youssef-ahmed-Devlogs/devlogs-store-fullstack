@@ -321,7 +321,8 @@ if (isset($_SESSION['username'])) {
                 </div>
                 <div class="col-xl-4">
                     <div class="product card__product">
-                        <img class="product__img" src="./assets/images/item-empty-img.png" alt="product" />
+                        <img class="product__img" id="prdouct__img" src="./assets/images/item-empty-img.png"
+                            alt="product" />
                         <div class="product__info">
                             <div class="main__info">
                                 <div class="title__category">
