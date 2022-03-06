@@ -171,13 +171,14 @@ select {
 input,
 select,
 textarea {
-  outline: none;
-  border: none;
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
   background: none;
   border-radius: 5px;
   display: block;
   padding: 10px;
-  background-color: rgba(255, 157, 0, 0.05);
+  background-color: rgba(255, 157, 0, 0.05) !important;
 }
 input::placeholder,
 select::placeholder,

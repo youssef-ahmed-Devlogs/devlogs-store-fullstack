@@ -246,3 +246,22 @@ const day =
 date = `${year}-${month}-${day}`;
 console.log(date);
 EditedDate.innerHTML = date;
+
+const addImg = document.getElementById("ad_image");
+addImg.addEventListener("change", uplaodImg);
+
+let imgAge = document.getElementById("prdouct__img");
+function uplaodImg() {
+  let file = this.files[0];
+
+  getBase64(file);
+}
+
+function getBase64(file) {
+  let reader = new FileReader(file);
+
+  reader.readAsDataURL(file);
+  reader.onload = function () {
+    imgAge.src = reader.result;
+  };
+}
