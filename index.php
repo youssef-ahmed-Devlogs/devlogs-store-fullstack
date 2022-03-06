@@ -223,8 +223,6 @@ include './init.php';
               <div class="products__content mt-5">
                 <h2 class="section__head">Top Ads</h2>
 
-
-
                 <div class="swiper top__products swiper__container">
                   <div class="swiper__navigation">
                     <div class="top__products-prev prev">

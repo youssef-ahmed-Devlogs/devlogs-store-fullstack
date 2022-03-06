@@ -19,6 +19,7 @@ if (isset($_SESSION['username'])) {
         $stmt = $conn->prepare("SELECT
                                     ads.*,
                                     categories.title AS category_title,
+                                    users.id AS user_id,
                                     users.username,
                                     users.country,
                                     users.reg_date AS user_reg_date
@@ -94,7 +95,7 @@ if (isset($_SESSION['username'])) {
 
                                 <?php
 
-                                $stmt = $conn->prepare("SELECT comments.comment, users.fullname FROM comments
+                                $stmt = $conn->prepare("SELECT comments.comment, users.fullname, user_id FROM comments
                                                             JOIN users ON users.id = comments.user_id
                                                             WHERE comments.ad_id = ?
                                                             ORDER BY comments.id DESC
@@ -124,7 +125,7 @@ if (isset($_SESSION['username'])) {
                                         <div class="comment mt-3 box_style_content">
                                             <div class="user-info">
                                                 <img src="assets/images/item-empty-img.png" alt="">
-                                                <a href="#" class="fullname">
+                                                <a href="profile.php?userId=<?php echo $comment['user_id'] ?>" class="fullname">
                                                     <?php echo $comment['fullname'] ?>
                                                 </a>
                                             </div>
@@ -254,7 +255,7 @@ if (isset($_SESSION['username'])) {
                                     </span>
                                 </button>
 
-                                <a href="profile.php" class="user__details ad__publisher">
+                                <a href="profile.php?userId=<?php echo $ad['user_id']  ?>" class="user__details ad__publisher">
                                     <div>
                                         <img src="./assets/images/user-pic2.jpg" alt="user image" />
                                     </div>
