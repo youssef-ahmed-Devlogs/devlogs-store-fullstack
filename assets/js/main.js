@@ -202,10 +202,47 @@ if (document.querySelector(".profile_page") !== null) {
   }
 }
 
-const addTitle = document.getElementById("title");
-console.log(addTitle);
+const formPreview = document.getElementById("from_preview");
+const cardPrdouctEdited = formPreview.querySelector(".card__product");
 
-// function livePreivew(e) {
-//   console.log(e.target.value);
-// }
-// livePreivew();
+let TitleSpan = cardPrdouctEdited.querySelector(".title");
+let DescSpan = cardPrdouctEdited.querySelector(".desc");
+let PriceSpan = cardPrdouctEdited.querySelector(".price .number");
+let qateogrySpan = cardPrdouctEdited.querySelector(".category");
+let locationSpan = cardPrdouctEdited.querySelector(".location");
+const EditedDate = cardPrdouctEdited.querySelector(".date");
+
+const EditTitle = formPreview.title;
+const EditedDesc = formPreview.desc;
+const EditedPrice = formPreview.price;
+const EditQategory = formPreview.category;
+const Editgovernorate = formPreview.governorate;
+// EditTitle.addEventListener("input", livePreivew);
+EditTitle.addEventListener("input", (e) => {
+  Livepriew(e.target.value, TitleSpan, "Title");
+});
+
+EditedDesc.addEventListener("input", (e) => {
+  Livepriew(e.target.value, DescSpan, "Description written here");
+});
+EditedPrice.addEventListener("change", (e) => {
+  Livepriew(e.target.value, PriceSpan, 100);
+});
+
+Editgovernorate.addEventListener("change", (e) => {
+  Livepriew("Egypt/" + e.target.value, locationSpan, "Egypt/cairo");
+});
+
+function Livepriew(value, ele, def) {
+  ele.innerHTML = value == "" ? def : value;
+}
+
+let date = new Date();
+const year = date.getFullYear();
+const month = date.getMonth() < 10 ? "0" + date.getMonth() : date.getMonth();
+const day =
+  date.getUTCDate() < 10 ? "0" + date.getUTCDate() : date.getUTCDate();
+
+date = `${year}-${month}-${day}`;
+console.log(date);
+EditedDate.innerHTML = date;
