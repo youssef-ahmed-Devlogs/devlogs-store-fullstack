@@ -62,7 +62,12 @@ if ($categoryid > 0) {
                   <?php
                   }
                   ?>
-                  <img class="product__img" src="./assets/images/item-empty-img.png" alt="product" />
+                    <!-- Image -->
+                    <?php if(!empty($ad['image'])) { ?>
+                        <img class="product__img" src="./uploads/ads/<?php echo $ad['image'] ?>" alt="product" />
+                    <?php } else { ?>
+                        <img class="product__img" src="./assets/images/item-empty-img.png" alt="product" />
+                    <?php }?>
                   <a href="showAd.php?id=<?php echo $ad['ad_id'] ?>" class="product__info">
                     <div class="main__info">
                       <div class="title__category">

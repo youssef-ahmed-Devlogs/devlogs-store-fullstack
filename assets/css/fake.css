@@ -1,1 +1,7 @@
+.card__product {
+    width: 100%;
+}
 
+.card__product .product__img {
+    height: 295.5px;
+}

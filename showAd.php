@@ -45,13 +45,28 @@ if (isset($_SESSION['username'])) {
                         <div class="col-xl-9 col-12">
                             <div class="left-section">
                                 <div class="addDetails-img fancy-gallery">
-                                    <div>
-                                        <a data-fancybox="gallery" data-caption="image 1" href="assets/images/item-empty-img.png"></a>
-                                        <a data-fancybox="gallery" data-caption="image 2" href="assets/images/item-empty-img.png"></a>
-                                        <a data-fancybox="gallery" data-caption="image 3" href="assets/images/item-empty-img.png">
-                                            <img src="assets/images/item-empty-img.png" class="main-img w-100" alt="ad image" />
+
+                                    <!-- Image -->
+                                    <?php if (!empty($ad['image'])) { ?>
+                                        <a
+                                                data-fancybox="gallery"
+                                                data-caption="<?php echo $ad['title'] ?>"
+                                                href="./uploads/ads/<?php echo $ad['image'] ?>"
+                                        >
+                                            <img class="main-img w-100" src="./uploads/ads/<?php echo $ad['image'] ?>" alt="product"/>
                                         </a>
-                                    </div>
+                                        <a
+                                                data-fancybox="gallery"
+                                                data-caption="<?php echo $ad['title'] ?>"
+                                                href="./uploads/ads/<?php echo $ad['image'] ?>"
+                                        ></a>
+                                    <?php } else { ?>
+                                        <a data-fancybox="gallery" data-caption="image"
+                                           href="assets/images/item-empty-img.png">
+                                            <img class="main-img w-100" src="./assets/images/item-empty-img.png"
+                                                 alt="product"/>
+                                        </a>
+                                    <?php } ?>
                                 </div>
 
                                 <div class="product-info mb-4">
