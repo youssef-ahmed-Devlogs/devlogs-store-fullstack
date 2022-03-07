@@ -10,6 +10,12 @@
 }
 
 @media (max-width: 500px) {
+
+    .section__head-xl {
+        font-size: 30px;
+        margin-bottom: 25px !important;
+    }
+
     .logo img {
         width: 45px !important;
         height: 45px !important;
