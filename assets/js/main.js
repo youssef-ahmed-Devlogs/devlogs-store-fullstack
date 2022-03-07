@@ -3,11 +3,7 @@ if (document.querySelector(".user-settings-list") != null) {
   const userIcon = document.querySelector(".user-icon");
   const userSettingsList = document.querySelector(".user-settings-list");
   let isUserListOpen = false;
-  const notificationIcon = document.querySelector(".notification-icon");
-  const notificationsSettingsList = document.querySelector(
-    ".notifications-settings-list"
-  );
-  let isNotiListOpen = false;
+
 
   userIcon.addEventListener("click", (e) => {
     e.stopPropagation();
@@ -19,36 +15,13 @@ if (document.querySelector(".user-settings-list") != null) {
       isUserListOpen = true;
     }
 
-    notificationsSettingsList.style.display = "none";
-    isNotiListOpen = false;
   });
 
   userSettingsList.addEventListener("click", (e) => e.stopPropagation());
 
-  notificationIcon.addEventListener("click", (e) => {
-    e.stopPropagation();
-    if (isNotiListOpen) {
-      notificationsSettingsList.style.display = "none";
-      isNotiListOpen = false;
-    } else {
-      notificationsSettingsList.style.display = "block";
-      isNotiListOpen = true;
-    }
-
-    userSettingsList.style.display = "none";
-    isUserListOpen = false;
-  });
-
-  notificationsSettingsList.addEventListener("click", (e) =>
-    e.stopPropagation()
-  );
-
   window.addEventListener("click", (e) => {
     userSettingsList.style.display = "none";
     isUserListOpen = false;
-
-    notificationsSettingsList.style.display = "none";
-    isNotiListOpen = false;
   });
 }
 
