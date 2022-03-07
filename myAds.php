@@ -501,7 +501,8 @@ if (isset($_SESSION['username'])) {
                     ?>
         <h1 class="section__head-xl mb-5">Edit Ad</h1>
 
-        <form action="?action=update" method="POST" enctype="multipart/form-data">
+        <form action="?action=update" id="from_preview" class="needs-validation" method="POST"
+            enctype="multipart/form-data" novalidate>
             <input type="hidden" name="adid" value="<?php echo $ad['id'] ?>">
             <div class="row">
                 <div class="col-xl-8 mb-4">
@@ -510,14 +511,21 @@ if (isset($_SESSION['username'])) {
                             <div class="form-group">
                                 <label for="title">Title</label>
                                 <input type="text" name="title" id="title" class="form-control mt-1" placeholder="Title"
-                                    value="<?php echo $ad['title'] ?>">
+                                    value="<?php echo $ad['title'] ?>" required>
+                                <div class="invalid-feedback">
+                                    Please choose a username.
+                                </div>
+
                             </div>
                         </div>
                         <div class="col-12 mb-3">
                             <div class="form-group">
                                 <label for="desc">Description</label>
                                 <textarea name="desc" id="desc" class="form-control mt-1" placeholder="Description"
-                                    cols="30" rows="10"><?php echo $ad['description'] ?></textarea>
+                                    cols="30" rows="10" required><?php echo $ad['description'] ?></textarea>
+                                <div class="invalid-feedback">
+                                    Please choose a Description.
+                                </div>
 
                             </div>
                         </div>
@@ -525,20 +533,26 @@ if (isset($_SESSION['username'])) {
                             <div class="form-group">
                                 <label for="price">Price</label>
                                 <input type="number" name="price" id="price" class="form-control mt-1"
-                                    placeholder="Price" value="<?php echo $ad['price'] ?>">
+                                    placeholder="Price" value="<?php echo $ad['price'] ?>" required>
+                                <div class="invalid-feedback">
+                                    Please choose a price.
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-6 mb-3">
                             <div class="form-group">
                                 <label for="phone_number">phone Number</label>
                                 <input type="number" name="phone_number" id="phone_number" class="form-control mt-1"
-                                    placeholder="Phone Number" value="<?php echo $ad['phone_number'] ?>">
+                                    placeholder="Phone Number" value="<?php echo $ad['phone_number'] ?>" required>
+                                <div class="invalid-feedback">
+                                    Please choose a number.
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-6 mb-3">
                             <div class="form-group">
                                 <label for="governorate">Governorate</label>
-                                <select name="governorate" id="governorate" class="form-control mt-1">
+                                <select name="governorate" id="governorate" class="form-control mt-1" required>
                                     <option value="cairo" <?php echo $ad['governorate'] == "cairo" ? "selected" : "" ?>>
                                         Cairo
                                     </option>
@@ -548,13 +562,16 @@ if (isset($_SESSION['username'])) {
                                     <option value="alex" <?php echo $ad['governorate'] == "alex" ? "selected" : "" ?>>
                                         Alex
                                     </option>
+                                    <div class="invalid-feedback">
+                                        Please choose a city.
+                                    </div>
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-6 mb-3">
                             <div class="form-group">
                                 <label for="item_status">Item Status</label>
-                                <select name="item_status" id="item_status" class="form-control mt-1">
+                                <select name="item_status" id="item_status" class="form-control mt-1" required>
                                     <option value="new" <?php echo $ad['item_status'] == "new" ? "selected" : "" ?>>
                                         New
                                     </option>
@@ -565,13 +582,16 @@ if (isset($_SESSION['username'])) {
                                     <option value="used" <?php echo $ad['item_status'] == "used" ? "selected" : "" ?>>
                                         Used
                                     </option>
+                                    <div class="invalid-feedback">
+                                        Please choose a state.
+                                    </div>
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-6 mb-3">
                             <div class="form-group">
                                 <label for="category">Category</label>
-                                <select name="category" id="category" class="form-control mt-1">
+                                <select name="category" id="category" class="form-control mt-1" required>
                                     <?php
                                                 $stmt = $conn->prepare("SELECT * FROM categories");
                                                 $stmt->execute();
@@ -584,6 +604,9 @@ if (isset($_SESSION['username'])) {
                                         <?php echo $category['title'] ?>
                                     </option>
                                     <?php } ?>
+                                    <div class="invalid-feedback">
+                                        Please choose a category.
+                                    </div>
                                 </select>
                             </div>
                         </div>
@@ -612,12 +635,13 @@ if (isset($_SESSION['username'])) {
                                         <?php echo $ad['title'] ?>
                                     </span>
                                     <?php
-
                                     $stmtt = $conn->prepare("SELECT title FROM categories WHERE id = ?");
                                     $stmtt->execute([$ad['category_id']]);
                                     $pCat =  $stmtt->fetchColumn();
-
                                     ?>
+                                    <span class="desc">
+
+                                    </span>
                                     <span class="category" data-def="<?php echo $pCat ?>">
                                         <?php echo $pCat ?>
                                     </span>
