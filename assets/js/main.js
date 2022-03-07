@@ -61,8 +61,41 @@ swiperBigView(".home__slider");
 // END HOME SLIDER
 
 // START HOME PRODUCTS SLIDER
+var latestAdsSwiper = new Swiper('.latest__products', {
+  lazy: true,
+  navigation: {
+    nextEl: `latest__products-next`,
+    prevEl: `latest__products-prev`,
+  },
+  autoplay: {
+    delay: 4000,
+    disableOnInteraction: false,
+  },
+  pagination: {
+    clickable: true,
+    el: `latest__products-pagination`,
+  },
 
-swiperConf(".latest__products", 4);
+  breakpoints: {
+    0: {
+      slidesPerView: 1,
+      spaceBetween: 20,
+    },
+    768: {
+      slidesPerView: 2,
+      spaceBetween: 20,
+    },
+    1200: {
+      slidesPerView: 3,
+      spaceBetween: 20,
+    },
+    1300: {
+      slidesPerView: 4,
+      spaceBetween: 20,
+    },
+  },
+});
+
 swiperConf(".top__products", 3);
 
 // END HOME PRODUCTS SLIDER
@@ -90,6 +123,7 @@ if (document.querySelector(".ad__deials__page") !== null) {
   }
 
   swiperConf(".other__ads__seller", 3);
+
   swiperConf(".another__products", 4);
 }
 
@@ -122,7 +156,7 @@ function swiperConf(selector, slidesPerView) {
         slidesPerView: 2,
         spaceBetween: 20,
       },
-      1200: {
+      1250: {
         slidesPerView: slidesPerView,
         spaceBetween: 20,
       },
@@ -274,13 +308,17 @@ let categories__sectionSpan = document.querySelector(
 let categories__list = document.querySelector(".categories__list");
 
 Category_button.addEventListener("click", () => {
-  setTimeout(() => {
-    if (categories__list.classList.contains("show")) {
-      categories__sectionSpan.classList.add("d-none");
-      categories__sectionSpan.classList.remove("d-block");
-    } else {
-      categories__sectionSpan.classList.remove("d-none");
-      categories__sectionSpan.classList.add("d-block");
-    }
-  }, 100);
+  categories__sectionSpan.classList.toggle("d-none");
+  categories__sectionSpan.classList.toggle("d-block");
 });
+
+categories__sectionSpan.addEventListener("click", () => {
+  categories__sectionSpan.classList.toggle("d-none");
+  categories__sectionSpan.classList.toggle("d-block");
+});
+
+if(window.innerWidth <= 1199) {
+  categories__list.classList.remove('show');
+  categories__sectionSpan.classList.toggle("d-none");
+  categories__sectionSpan.classList.toggle("d-block");
+}
