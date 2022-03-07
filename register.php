@@ -1,4 +1,6 @@
 <?php
+
+ob_start();
 session_start();
 
 if (isset($_SESSION['username'])) {
@@ -13,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
   // Get inputs value from form
   $username = trim(filter_var($_POST['username'], FILTER_SANITIZE_SPECIAL_CHARS));
+  $fullname = trim(filter_var($_POST['fullname'], FILTER_SANITIZE_SPECIAL_CHARS));
   $email = trim(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL));
   $password = $_POST['password'];
   $confirmPassword = $_POST['confirmPassword'];
@@ -26,6 +29,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $formErrors[] = "Username can't be empty.";
   } elseif (strlen($username) < 3) {
     $formErrors[] = "Username can't be less than 3 characters.";
+  }
+  
+  if (empty($fullname)) {
+    $formErrors[] = "Full Name can't be empty.";
   }
 
   if (empty($email)) {
@@ -69,15 +76,20 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 
     if (empty($formErrors)) {
+        
 
-      $stmt = $conn->prepare("INSERT INTO users(username, email, password, reg_date)
-                              VALUES(:username, :email, :password, NOW())
+      $stmt = $conn->prepare("INSERT INTO users(username, fullname, email, password, reg_date)
+                              VALUES(:username, :fullname, :email, :password, NOW())
                             ");
+
+    
       $stmt->execute([
         "username" => $username,
+        "fullname" => $fullname,
         "email" => $email,
         "password" => $hashPass
       ]);
+     
 
       echo "<div class='alert alert-success'>Account has been created.</div>";
       header("refresh:3;url=login.php");
@@ -97,13 +109,21 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     <div class="page_title text-right">
                         <h1>Create Account</h1>
                     </div>
-                    <form class="needs-validation" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST" novalidate>
+                    <form class="needs-validation" action="register.php" method="POST" novalidate>
                         <div class="form-group mb-3">
                             <label for="username">Username</label>
                             <input class="form-control" type="text" name="username" id="username"
                                 placeholder="example: ahmed" required>
                             <div class="invalid-feedback">
                                 Please write a username.
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="fullname">Full Name</label>
+                            <input class="form-control" type="text" name="fullname" id="fullname"
+                                placeholder="example: ahmed mohammed" required>
+                            <div class="invalid-feedback">
+                                Please write a Full Name.
                             </div>
                         </div>
                         <div class="form-group mb-3">
@@ -158,5 +178,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 <?php
 
 include './includes/templates/footer.php';
+ob_flush();
 
 ?>

@@ -2,5 +2,5 @@
 
 function setPageTitle() {
     global $pageTitle;
-    return isset($pageTitle) ? "$pageTitle | OLX" : "OLX";
+    return isset($pageTitle) ? "$pageTitle | DEVLOGS" : "DEVLOGS";
 }

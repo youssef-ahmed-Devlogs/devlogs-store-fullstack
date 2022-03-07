@@ -199,7 +199,7 @@ requiredInputs.forEach((item) => {
 if (document.querySelector(".profile_page") !== null) {
   const flexIcon = document.getElementById("flex_icon");
   const colOption = document.querySelectorAll(".col_option");
-  const product_card = document.querySelectorAll(".card__product");
+  const product_card = document.querySelectorAll(".myads .card__product");
 
   flexIcon.addEventListener("click", changLayout);
   function changLayout(e) {

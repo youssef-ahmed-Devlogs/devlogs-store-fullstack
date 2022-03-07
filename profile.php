@@ -75,7 +75,7 @@ if (isset($_SESSION['username']) && isset($_GET['userId'])) {
                 </div>
                 <div class="row left-content">
                     <div class="col-lg-3">
-                        <div class="user_info_right box_style_content">
+                        <div class="user_info_right box_style_content ">
                             <div class="d-flex align-items-center">
                                 <span class="mr-1">
                                     <i class="fas fa-map-marker-alt"></i>
@@ -148,7 +148,7 @@ if (isset($_SESSION['username']) && isset($_GET['userId'])) {
 
                     </div>
                     <div class="col-lg-9">
-                        <div class="box_style_content">
+                        <div class="box_style_content myads">
                             <div class="row">
                                 <div class="flex_icon mb-2" id="flex_icon">
                                     <i class="fas fa-list"></i>

@@ -9,7 +9,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,500;1,700;1,900&display=swap" rel="stylesheet" />
-  <link rel="shortcut icon" href="./assets/images/logo.png" type="image/x-icon" />
   <link rel="stylesheet" href="./assets/css/fancybox.css">
   <link rel="stylesheet" href="./assets/css/swiper-bundle.min.css" />
   <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
@@ -25,7 +24,7 @@
       <div class="header__content">
         <div class="left-header">
           <a href="index.php" class="logo">
-            <img src="./assets/images/logo.png" alt="Logo" />
+            Devlogs
           </a>
         </div>
         <div class="right-header">

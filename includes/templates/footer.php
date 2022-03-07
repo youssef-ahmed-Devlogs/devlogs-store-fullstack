@@ -4,9 +4,11 @@
     <div class="container">
       <div class="row">
         <div class="col-xl-2">
-          <div class="logo mb-5">
-            <img src="assets/images/logo.png" alt="logo" />
-          </div>
+
+              <a href="index.php" class="logo">
+                  Devlogs
+              </a>
+
         </div>
         <div class="col-xl-10">
           <div class="links">

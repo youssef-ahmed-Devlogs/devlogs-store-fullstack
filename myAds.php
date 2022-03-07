@@ -26,152 +26,147 @@ if (isset($_SESSION['username'])) {
         $stmt->execute([$currentUserID, $search]);
         $ads = $stmt->fetchAll();
 
-        ?>
+?>
 
-<main class="myAds-page section">
-    <div class="container">
-        <h1 class="section__head-xl mb-5">My Ads</h1>
+        <main class="myAds-page section">
+            <div class="container">
+                <h1 class="section__head-xl mb-5">My Ads</h1>
 
-        <div class="table-responsive">
+                <div class="table-responsive">
 
-            <div class="top-settings d-flex align-items-center justify-content-between mb-2">
-                <div class="left">
-                    <div class="button-group">
-                        <small>Add new</small>
-                        <a href="myAds.php?action=add" class="btn btn-primary" title="Add new ad">
-                            <i class="fas fa-plus"></i>
-                        </a>
-                    </div>
-                    <span class="ads-count">You have a [ <strong><?php echo count($ads) ?></strong> ] ads</span>
-                </div>
-                <div class="right">
-                    <form class="d-flex align-items-center gap-2">
-                        <div class="form-group">
-                            <label for="">Search</label>
-                            <input type="text" name="search" placeholder="Ad title?"
-                                value="<?php echo isset($_GET['search']) ? $_GET['search'] : '' ?>">
-                        </div>
-                        <div class="form-group">
-                            <label for="">Sort By</label>
-                            <select name="sort_by" onchange="this.form.submit()">
-                                <option value="id" <?php echo $sortby == 'id' ? 'selected' : '' ?>>ID</option>
-                                <option value="added_date" <?php echo $sortby == 'added_date' ? 'selected' : '' ?>>
-                                    Added Date
-                                </option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Sort type</label>
-                            <select name="sort" onchange="this.form.submit()">
-                                <option value="desc" <?php echo $sort == 'desc' ? 'selected' : '' ?>>
-                                    Descending
-                                </option>
-                                <option value="asc" <?php echo $sort == 'asc' ? 'selected' : '' ?>>Ascending
-                                </option>
-                            </select>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Image</th>
-                        <th>Title</th>
-                        <th>Price</th>
-                        <th>Date</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    <?php foreach ($ads as $ad) { ?>
-                    <tr>
-                        <td>
-                            <img src="./uploads/ads/<?php echo $ad['image'] ?>" alt="">
-                        </td>
-                        <td>
-                            <?php echo $ad['title'] ?>
-                        </td>
-                        <td>
-                            <?php echo $ad['price'] ?>EGP
-                        </td>
-                        <td>
-                            <?php echo $ad['added_date'] ?>
-                        </td>
-                        <td>
-                            <span
-                                class="badge rounded-pill <?php echo $ad['publish_state'] == 'pending' ? 'bg-warning' : 'bg-info' ?> ">
-                                <?php echo $ad['publish_state'] ?>
-                            </span>
-                        </td>
-                        <td>
-                            <div class="d-flex gap-1">
-
-
-                                <div class="button-group">
-                                    <small>Show</small>
-                                    <a href="showAd.php?id=<?php echo $ad['id'] ?>" class="btn btn-secondary"
-                                        title="Show">
-                                        <i class="fas fa-eye"></i>
-                                    </a>
-                                </div>
-                                <div class="button-group">
-                                    <small>Edit</small>
-                                    <a href="myAds.php?action=edit&adid=<?php echo $ad['id'] ?>" class="btn btn-success"
-                                        title="Edit">
-                                        <i class="fas fa-pencil-alt"></i>
-                                    </a>
-                                </div>
-                                <div class="button-group">
-                                    <small>Delete</small>
-                                    <a href="myAds.php?action=delete&adid=<?php echo $ad['id'] ?>"
-                                        class="btn btn-danger" title="Delete">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </a>
-                                </div>
+                    <div class="top-settings d-flex align-items-center justify-content-between mb-2">
+                        <div class="left">
+                            <div class="button-group">
+                                <small>Add new</small>
+                                <a href="myAds.php?action=add" class="btn btn-primary" title="Add new ad">
+                                    <i class="fas fa-plus"></i>
+                                </a>
                             </div>
-                        </td>
-                    </tr>
-                    <?php } ?>
+                            <span class="ads-count">You have a [ <strong><?php echo count($ads) ?></strong> ] ads</span>
+                        </div>
+                        <div class="right">
+                            <form class="d-flex align-items-center gap-2">
+                                <div class="form-group">
+                                    <label for="">Search</label>
+                                    <input type="text" name="search" placeholder="Ad title?" value="<?php echo isset($_GET['search']) ? $_GET['search'] : '' ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Sort By</label>
+                                    <select name="sort_by" onchange="this.form.submit()">
+                                        <option value="id" <?php echo $sortby == 'id' ? 'selected' : '' ?>>ID</option>
+                                        <option value="added_date" <?php echo $sortby == 'added_date' ? 'selected' : '' ?>>
+                                            Added Date
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Sort type</label>
+                                    <select name="sort" onchange="this.form.submit()">
+                                        <option value="desc" <?php echo $sort == 'desc' ? 'selected' : '' ?>>
+                                            Descending
+                                        </option>
+                                        <option value="asc" <?php echo $sort == 'asc' ? 'selected' : '' ?>>Ascending
+                                        </option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
 
-                </tbody>
-            </table>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Title</th>
+                                <th>Price</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <?php foreach ($ads as $ad) { ?>
+                                <tr>
+                                    <td>
+                                        <img src="./uploads/ads/<?php echo $ad['image'] ?>" alt="">
+                                    </td>
+                                    <td>
+                                        <?php echo $ad['title'] ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $ad['price'] ?>EGP
+                                    </td>
+                                    <td>
+                                        <?php echo $ad['added_date'] ?>
+                                    </td>
+                                    <td>
+                                        <span class="badge rounded-pill <?php echo $ad['publish_state'] == 'pending' ? 'bg-warning' : 'bg-info' ?> ">
+                                            <?php echo $ad['publish_state'] ?>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex gap-1">
 
 
-            <!-- If no has ads posted -->
-            <?php
+                                            <div class="button-group">
+                                                <small>Show</small>
+                                                <a href="showAd.php?id=<?php echo $ad['id'] ?>" class="btn btn-secondary" title="Show">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                            </div>
+                                            <div class="button-group">
+                                                <small>Edit</small>
+                                                <a href="myAds.php?action=edit&adid=<?php echo $ad['id'] ?>" class="btn btn-success" title="Edit">
+                                                    <i class="fas fa-pencil-alt"></i>
+                                                </a>
+                                            </div>
+                                            <div class="button-group">
+                                                <small>Delete</small>
+                                                <a href="myAds.php?action=delete&adid=<?php echo $ad['id'] ?>" class="btn btn-danger" title="Delete">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+
+                        </tbody>
+                    </table>
+
+
+                    <!-- If no has ads posted -->
+                    <?php
 
                     if (count($ads) == 0) { ?>
 
-            <div class="page-empty text-center">
-                <div>
-                    <img src="assets/images/myads-empty.png" alt="">
-                    <span>You have no ads posted at the moment.</span>
+                        <div class="page-empty text-center">
+                            <div>
+                                <img src="assets/images/myads-empty.png" alt="">
+                                <span>You have no ads posted at the moment.</span>
 
-                    <a href="myAds.php?action=add" class="btn btn-primary" title="Add new ad">
-                        <i class="fas fa-plus"></i> Add new ad
-                    </a>
+                                <a href="myAds.php?action=add" class="btn btn-primary" title="Add new ad">
+                                    <i class="fas fa-plus"></i> Add new ad
+                                </a>
+                            </div>
+                        </div>
+
+                    <?php } ?>
                 </div>
+
             </div>
+        </main>
 
-            <?php } ?>
-        </div>
-
-    </div>
-</main>
-
-<?php
+    <?php
 
     } elseif ($action == 'add') { ?>
 
 
-<main class="addAd-page section">
-    <div class="container">
+        <main class="addAd-page section">
+            <div class="container">
 
-        <?php
+                <?php
 
                 if (isset($_SESSION['formErrors'])) {
 
@@ -183,182 +178,176 @@ if (isset($_SESSION['username'])) {
                 $_SESSION['formErrors'] = [];
 
                 ?>
-        <h1 class="section__head-xl mb-5">Add Ad</h1>
+                <h1 class="section__head-xl mb-5">Add Ad</h1>
 
-        <form action="?action=insert" id="from_preview" class="needs-validation" method="POST"
-            enctype="multipart/form-data" novalidate>
+                <form action="?action=insert" id="from_preview" class="needs-validation" method="POST" enctype="multipart/form-data" novalidate>
 
-            <div class="row">
-                <div class="col-xl-8 mb-4">
                     <div class="row">
-                        <div class="col-12 mb-3">
-                            <div class="form-group">
-                                <label for="title">Title</label>
-                                <input type="text" name="title" id="title" class="form-control mt-1" placeholder="Title"
-                                    required>
-                                <div class="invalid-feedback">
-                                    Please choose a username.
+                        <div class="col-xl-8 mb-4">
+                            <div class="row">
+                                <div class="col-12 mb-3">
+                                    <div class="form-group">
+                                        <label for="title">Title</label>
+                                        <input type="text" name="title" id="title" class="form-control mt-1" placeholder="Title" required>
+                                        <div class="invalid-feedback">
+                                            Please choose a username.
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-12 mb-3">
-                            <div class="form-group">
-                                <label for="desc">Description</label>
-                                <textarea name="desc" id="desc" class="form-control mt-1" placeholder="Description"
-                                    cols="30" rows="10" required></textarea>
-                                <div class="invalid-feedback">
-                                    Please choose a username.
+                                <div class="col-12 mb-3">
+                                    <div class="form-group">
+                                        <label for="desc">Description</label>
+                                        <textarea name="desc" id="desc" class="form-control mt-1" placeholder="Description" cols="30" rows="10" required></textarea>
+                                        <div class="invalid-feedback">
+                                            Please choose a username.
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 mb-3">
-                            <div class="form-group">
-                                <label for="price">Price</label>
-                                <input type="number" name="price" id="price" class="form-control mt-1"
-                                    placeholder="Price" required>
-                                <div class="invalid-feedback">
-                                    Please choose a username.
+                                <div class="col-lg-6 mb-3">
+                                    <div class="form-group">
+                                        <label for="price">Price</label>
+                                        <input type="number" name="price" id="price" class="form-control mt-1" placeholder="Price" required>
+                                        <div class="invalid-feedback">
+                                            Please choose a username.
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 mb-3">
-                            <div class="form-group">
-                                <label for="phone_number">phone Number</label>
-                                <input type="number" name="phone_number" id="phone_number" class="form-control mt-1"
-                                    placeholder="Phone Number" required>
-                                <div class="invalid-feedback">
-                                    Please choose a username.
+                                <div class="col-lg-6 mb-3">
+                                    <div class="form-group">
+                                        <label for="phone_number">phone Number</label>
+                                        <input type="number" name="phone_number" id="phone_number" class="form-control mt-1" placeholder="Phone Number" required>
+                                        <div class="invalid-feedback">
+                                            Please choose a username.
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 mb-3">
-                            <div class="form-group">
-                                <label for="governorate">Governorate</label>
-                                <select name="governorate" id="governorate" class="form-control mt-1" required>
-                                    <option value="">
-                                        Select
-                                    </option>
-                                    <option value="cairo">
-                                        Cairo
-                                    </option>
-                                    <option value="giza">
-                                        Giza
-                                    </option>
-                                    <option value="alex">
-                                        Alex
-                                    </option>
-                                </select>
-                                <div class="invalid-feedback">
-                                    Please choose a username.
+                                <div class="col-lg-6 mb-3">
+                                    <div class="form-group">
+                                        <label for="governorate">Governorate</label>
+                                        <select name="governorate" id="governorate" class="form-control mt-1" required>
+                                            <option value="">
+                                                Select
+                                            </option>
+                                            <option value="cairo">
+                                                Cairo
+                                            </option>
+                                            <option value="giza">
+                                                Giza
+                                            </option>
+                                            <option value="alex">
+                                                Alex
+                                            </option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Please choose a username.
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 mb-3">
-                            <div class="form-group">
-                                <label for="item_status">Item Status</label>
-                                <select name="item_status" id="item_status" class="form-control mt-1" required>
-                                    <option value="">
-                                        Select
-                                    </option>
-                                    <option value="new">
-                                        New
-                                    </option>
-                                    <option value="like new">
-                                        Like new
-                                    </option>
-                                    <option value="used">
-                                        Used
-                                    </option>
-                                </select>
-                                <div class="invalid-feedback">
-                                    Please choose a username.
+                                <div class="col-lg-6 mb-3">
+                                    <div class="form-group">
+                                        <label for="item_status">Item Status</label>
+                                        <select name="item_status" id="item_status" class="form-control mt-1" required>
+                                            <option value="">
+                                                Select
+                                            </option>
+                                            <option value="new">
+                                                New
+                                            </option>
+                                            <option value="like new">
+                                                Like new
+                                            </option>
+                                            <option value="used">
+                                                Used
+                                            </option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Please choose a username.
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 mb-3">
-                            <div class="form-group">
-                                <label for="category">Category</label>
-                                <select name="category" id="category" class="form-control mt-1" required>
-                                    <option value="">
-                                        Select
-                                    </option>
-                                    <?php
+                                <div class="col-lg-6 mb-3">
+                                    <div class="form-group">
+                                        <label for="category">Category</label>
+                                        <select name="category" id="category" class="form-control mt-1" required>
+                                            <option value="">
+                                                Select
+                                            </option>
+                                            <?php
                                             $stmt = $conn->prepare("SELECT * FROM categories");
                                             $stmt->execute();
                                             $categories = $stmt->fetchAll();
 
                                             foreach ($categories as $category) {
-                                                ?>
-                                    <option value="<?php echo $category['id'] ?>">
-                                        <?php echo $category['title'] ?>
-                                    </option>
-                                    <?php } ?>
-                                </select>
-                                <div class="invalid-feedback">
-                                    Please choose a username.
+                                            ?>
+                                                <option value="<?php echo $category['id'] ?>">
+                                                    <?php echo $category['title'] ?>
+                                                </option>
+                                            <?php } ?>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Please choose a username.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-3">
+                                    <div class="form-group">
+                                        <label for="ad_image" class="btn btn-primary w-100" style="margin-top: 28px;height: 50px;line-height: 36px">
+                                            <i class="fas fa-image"></i>
+                                            Upload Image
+                                        </label>
+                                        <input type="file" name="ad_image" id="ad_image" class="form-control mt-1" required>
+                                        <div class="invalid-feedback">
+                                            Please choose a username.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary">Add</button>
+                        </div>
+                        <div class="col-xl-4">
+                            <div class="product card__product">
+                                <img class="product__img" src="./assets/images/item-empty-img.png" alt="product" />
+                                <div class="product__info">
+                                    <div class="main__info">
+                                        <div class="title__category">
+                                            <span class="title">
+                                                Title
+                                            </span>
+                                            <span class="category">
+                                                Phones
+                                            </span>
+                                        </div>
+                                        <div class="price">
+                                            <span class="number">
+                                                534
+                                            </span>
+                                            <span class="currency">EGP</span>
+                                        </div>
+                                    </div>
+                                    <p class="desc">
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia tempora nam quidem
+                                        dolorem enim nostrum asperiores magni accusamus ut incidunt...
+                                    </p>
+                                    <div class="date__location">
+                                        <span class="date">
+                                            2022-03-02
+                                        </span>
+                                        <span class="location">
+                                            Egypt/Cairo
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6 mb-3">
-                            <div class="form-group">
-                                <label for="ad_image" class="btn btn-primary w-100"
-                                    style="margin-top: 28px;height: 50px;line-height: 36px">
-                                    <i class="fas fa-image"></i>
-                                    Upload Image
-                                </label>
-                                <input type="file" name="ad_image" id="ad_image" class="form-control mt-1" required>
-                                <div class="invalid-feedback">
-                                    Please choose a username.
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
-                    <button class="btn btn-primary">Add</button>
-                </div>
-                <div class="col-xl-4">
-                    <div class="product card__product">
-                        <img class="product__img" src="./assets/images/item-empty-img.png" alt="product" />
-                        <div class="product__info">
-                            <div class="main__info">
-                                <div class="title__category">
-                                    <span class="title">
-                                        Title
-                                    </span>
-                                    <span class="category">
-                                        Phones
-                                    </span>
-                                </div>
-                                <div class="price">
-                                    <span class="number">
-                                        534
-                                    </span>
-                                    <span class="currency">EGP</span>
-                                </div>
-                            </div>
-                            <p class="desc">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia tempora nam quidem
-                                dolorem enim nostrum asperiores magni accusamus ut incidunt...
-                            </p>
-                            <div class="date__location">
-                                <span class="date">
-                                    2022-03-02
-                                </span>
-                                <span class="location">
-                                    Egypt/Cairo
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </form>
 
             </div>
-        </form>
-
-    </div>
-</main>
+        </main>
 
 
-<?php
+        <?php
 
     } elseif ($action == 'insert') {
 
@@ -382,7 +371,7 @@ if (isset($_SESSION['username'])) {
             $adImgTmp    = $adImg['tmp_name'];
 
             // Set random name for image
-            $adImgName = 'olx-ad' . rand(0, rand(0, 99999999) * 300) * 999 . $adImgName;
+            $adImgName = 'devlogs-ad' . rand(0, rand(0, 99999999) * 300) * 999 . $adImgName;
 
             // Get image extension
             $adImgType = explode('/', $adImgType);
@@ -425,13 +414,13 @@ if (isset($_SESSION['username'])) {
                 $formErrors[] = "Category Status can't be empty.";
             }
 
-            if(empty($adImg['name'])) {
+            if (empty($adImg['name'])) {
                 $formErrors[] = "Ad image can't be empty.";
             } elseif (!in_array($adImgType, $validExtensions)) {
                 $formErrors[] = "Ad image extension must be : (jpg, png, jpeg).";
             }
 
-            if($adImgSize > $validSize) {
+            if ($adImgSize > $validSize) {
                 $formErrors[] = "Ad image must be less than 5MB.";
             }
 
@@ -478,12 +467,12 @@ if (isset($_SESSION['username'])) {
 
         if ($stmt->rowCount() > 0) {
 
-            ?>
+        ?>
 
-<main class="editAd-page section">
-    <div class="container">
+            <main class="editAd-page section">
+                <div class="container">
 
-        <?php
+                    <?php
 
                     if (isset($_SESSION['formErrors'])) {
 
@@ -495,177 +484,169 @@ if (isset($_SESSION['username'])) {
                     $_SESSION['formErrors'] = [];
 
                     ?>
-        <h1 class="section__head-xl mb-5">Edit Ad</h1>
+                    <h1 class="section__head-xl mb-5">Edit Ad</h1>
 
-        <form action="?action=update" id="from_preview" class="needs-validation" method="POST"
-            enctype="multipart/form-data" novalidate>
-            <input type="hidden" name="adid" value="<?php echo $ad['id'] ?>">
-            <div class="row">
-                <div class="col-xl-8 mb-4">
-                    <div class="row">
-                        <div class="col-12 mb-3">
-                            <div class="form-group">
-                                <label for="title">Title</label>
-                                <input type="text" name="title" id="title" class="form-control mt-1" placeholder="Title"
-                                    value="<?php echo $ad['title'] ?>" required>
-                                <div class="invalid-feedback">
-                                    Please choose a username.
-                                </div>
+                    <form action="?action=update" id="from_preview" class="needs-validation" method="POST" enctype="multipart/form-data" novalidate>
+                        <input type="hidden" name="adid" value="<?php echo $ad['id'] ?>">
+                        <div class="row">
+                            <div class="col-xl-8 mb-4">
+                                <div class="row">
+                                    <div class="col-12 mb-3">
+                                        <div class="form-group">
+                                            <label for="title">Title</label>
+                                            <input type="text" name="title" id="title" class="form-control mt-1" placeholder="Title" value="<?php echo $ad['title'] ?>" required>
+                                            <div class="invalid-feedback">
+                                                Please choose a username.
+                                            </div>
 
-                            </div>
-                        </div>
-                        <div class="col-12 mb-3">
-                            <div class="form-group">
-                                <label for="desc">Description</label>
-                                <textarea name="desc" id="desc" class="form-control mt-1" placeholder="Description"
-                                    cols="30" rows="10" required><?php echo $ad['description'] ?></textarea>
-                                <div class="invalid-feedback">
-                                    Please choose a Description.
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-lg-6 mb-3">
-                            <div class="form-group">
-                                <label for="price">Price</label>
-                                <input type="number" name="price" id="price" class="form-control mt-1"
-                                    placeholder="Price" value="<?php echo $ad['price'] ?>" required>
-                                <div class="invalid-feedback">
-                                    Please choose a price.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 mb-3">
-                            <div class="form-group">
-                                <label for="phone_number">phone Number</label>
-                                <input type="number" name="phone_number" id="phone_number" class="form-control mt-1"
-                                    placeholder="Phone Number" value="<?php echo $ad['phone_number'] ?>" required>
-                                <div class="invalid-feedback">
-                                    Please choose a number.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 mb-3">
-                            <div class="form-group">
-                                <label for="governorate">Governorate</label>
-                                <select name="governorate" id="governorate" class="form-control mt-1" required>
-                                    <option value="cairo" <?php echo $ad['governorate'] == "cairo" ? "selected" : "" ?>>
-                                        Cairo
-                                    </option>
-                                    <option value="giza" <?php echo $ad['governorate'] == "giza" ? "selected" : "" ?>>
-                                        Giza
-                                    </option>
-                                    <option value="alex" <?php echo $ad['governorate'] == "alex" ? "selected" : "" ?>>
-                                        Alex
-                                    </option>
-                                    <div class="invalid-feedback">
-                                        Please choose a city.
+                                        </div>
                                     </div>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 mb-3">
-                            <div class="form-group">
-                                <label for="item_status">Item Status</label>
-                                <select name="item_status" id="item_status" class="form-control mt-1" required>
-                                    <option value="new" <?php echo $ad['item_status'] == "new" ? "selected" : "" ?>>
-                                        New
-                                    </option>
-                                    <option value="like new"
-                                        <?php echo $ad['item_status'] == "like new" ? "selected" : "" ?>>
-                                        Like new
-                                    </option>
-                                    <option value="used" <?php echo $ad['item_status'] == "used" ? "selected" : "" ?>>
-                                        Used
-                                    </option>
-                                    <div class="invalid-feedback">
-                                        Please choose a state.
+                                    <div class="col-12 mb-3">
+                                        <div class="form-group">
+                                            <label for="desc">Description</label>
+                                            <textarea name="desc" id="desc" class="form-control mt-1" placeholder="Description" cols="30" rows="10" required><?php echo $ad['description'] ?></textarea>
+                                            <div class="invalid-feedback">
+                                                Please choose a Description.
+                                            </div>
+
+                                        </div>
                                     </div>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 mb-3">
-                            <div class="form-group">
-                                <label for="category">Category</label>
-                                <select name="category" id="category" class="form-control mt-1" required>
-                                    <?php
+                                    <div class="col-lg-6 mb-3">
+                                        <div class="form-group">
+                                            <label for="price">Price</label>
+                                            <input type="number" name="price" id="price" class="form-control mt-1" placeholder="Price" value="<?php echo $ad['price'] ?>" required>
+                                            <div class="invalid-feedback">
+                                                Please choose a price.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 mb-3">
+                                        <div class="form-group">
+                                            <label for="phone_number">phone Number</label>
+                                            <input type="number" name="phone_number" id="phone_number" class="form-control mt-1" placeholder="Phone Number" value="<?php echo $ad['phone_number'] ?>" required>
+                                            <div class="invalid-feedback">
+                                                Please choose a number.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 mb-3">
+                                        <div class="form-group">
+                                            <label for="governorate">Governorate</label>
+                                            <select name="governorate" id="governorate" class="form-control mt-1" required>
+                                                <option value="cairo" <?php echo $ad['governorate'] == "cairo" ? "selected" : "" ?>>
+                                                    Cairo
+                                                </option>
+                                                <option value="giza" <?php echo $ad['governorate'] == "giza" ? "selected" : "" ?>>
+                                                    Giza
+                                                </option>
+                                                <option value="alex" <?php echo $ad['governorate'] == "alex" ? "selected" : "" ?>>
+                                                    Alex
+                                                </option>
+                                                <div class="invalid-feedback">
+                                                    Please choose a city.
+                                                </div>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 mb-3">
+                                        <div class="form-group">
+                                            <label for="item_status">Item Status</label>
+                                            <select name="item_status" id="item_status" class="form-control mt-1" required>
+                                                <option value="new" <?php echo $ad['item_status'] == "new" ? "selected" : "" ?>>
+                                                    New
+                                                </option>
+                                                <option value="like new" <?php echo $ad['item_status'] == "like new" ? "selected" : "" ?>>
+                                                    Like new
+                                                </option>
+                                                <option value="used" <?php echo $ad['item_status'] == "used" ? "selected" : "" ?>>
+                                                    Used
+                                                </option>
+                                                <div class="invalid-feedback">
+                                                    Please choose a state.
+                                                </div>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 mb-3">
+                                        <div class="form-group">
+                                            <label for="category">Category</label>
+                                            <select name="category" id="category" class="form-control mt-1" required>
+                                                <?php
                                                 $stmt = $conn->prepare("SELECT * FROM categories");
                                                 $stmt->execute();
                                                 $categories = $stmt->fetchAll();
 
                                                 foreach ($categories as $category) {
-                                                    ?>
-                                    <option value="<?php echo $category['id'] ?>"
-                                        <?php echo $category['id'] == $ad['category_id'] ? 'selected' : '' ?>>
-                                        <?php echo $category['title'] ?>
-                                    </option>
-                                    <?php } ?>
-                                    <div class="invalid-feedback">
-                                        Please choose a category.
+                                                ?>
+                                                    <option value="<?php echo $category['id'] ?>" <?php echo $category['id'] == $ad['category_id'] ? 'selected' : '' ?>>
+                                                        <?php echo $category['title'] ?>
+                                                    </option>
+                                                <?php } ?>
+                                                <div class="invalid-feedback">
+                                                    Please choose a category.
+                                                </div>
+                                            </select>
+                                        </div>
                                     </div>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 mb-3">
-                            <div class="form-group">
-                                <label for="ad_image" class="btn btn-primary w-100"
-                                    style="margin-top: 28px;height: 50px;line-height: 36px">
-                                    <i class="fas fa-image"></i>
-                                    Upload Image
-                                </label>
-                                <input type="file" name="ad_image" id="ad_image" class="form-control mt-1">
-                            </div>
-                        </div>
+                                    <div class="col-lg-6 mb-3">
+                                        <div class="form-group">
+                                            <label for="ad_image" class="btn btn-primary w-100" style="margin-top: 28px;height: 50px;line-height: 36px">
+                                                <i class="fas fa-image"></i>
+                                                Upload Image
+                                            </label>
+                                            <input type="file" name="ad_image" id="ad_image" class="form-control mt-1">
+                                        </div>
+                                    </div>
 
 
-                    </div>
-                    <button class="btn btn-primary">Edit</button>
-                </div>
-                <div class="col-xl-4">
-                    <div class="product card__product">
-                        <img class="product__img" src="./uploads/ads/<?php echo $ad['image'] ?>" alt="product" />
-                        <div class="product__info">
-                            <div class="main__info">
-                                <div class="title__category">
-                                    <span class="title" data-def="<?php echo $ad['title'] ?>">
-                                        <?php echo $ad['title'] ?>
-                                    </span>
-                                    <?php
-                                    $stmtt = $conn->prepare("SELECT title FROM categories WHERE id = ?");
-                                    $stmtt->execute([$ad['category_id']]);
-                                    $pCat =  $stmtt->fetchColumn();
-                                    ?>
-                                    <span class="desc">
-
-                                    </span>
-                                    <span class="category" data-def="<?php echo $pCat ?>">
-                                        <?php echo $pCat ?>
-                                    </span>
                                 </div>
-                                <div class="price">
-                                    <span class="number" data-def="<?php echo $ad['price'] ?>">
-                                        <?php echo $ad['price'] ?>
-                                    </span>
-                                    <span class="currency">EGP</span>
+                                <button class="btn btn-primary">Edit</button>
+                            </div>
+                            <div class="col-xl-4">
+                                <div class="product card__product">
+                                    <img class="product__img" src="./uploads/ads/<?php echo $ad['image'] ?>" alt="product" />
+                                    <div class="product__info">
+                                        <div class="main__info">
+                                            <div class="title__category">
+                                                <span class="title" data-def="<?php echo $ad['title'] ?>">
+                                                    <?php echo $ad['title'] ?>
+                                                </span>
+                                                <?php
+                                                $stmtt = $conn->prepare("SELECT title FROM categories WHERE id = ?");
+                                                $stmtt->execute([$ad['category_id']]);
+                                                $pCat =  $stmtt->fetchColumn();
+                                                ?>
+                                                <span class="desc">
+
+                                                </span>
+                                                <span class="category" data-def="<?php echo $pCat ?>">
+                                                    <?php echo $pCat ?>
+                                                </span>
+                                            </div>
+                                            <div class="price">
+                                                <span class="number" data-def="<?php echo $ad['price'] ?>">
+                                                    <?php echo $ad['price'] ?>
+                                                </span>
+                                                <span class="currency">EGP</span>
+                                            </div>
+                                        </div>
+                                        <div class="date__location">
+                                            <span class="date" data-def="<?php echo $ad['added_date'] ?>">
+                                                <?php echo $ad['added_date'] ?>
+                                            </span>
+                                            <span class="location" data-def="Egypt/<?php echo $ad['governorate'] ?>">
+                                                Egypt/<?php echo $ad['governorate'] ?>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="date__location">
-                                <span class="date" data-def="<?php echo $ad['added_date'] ?>">
-                                    <?php echo $ad['added_date'] ?>
-                                </span>
-                                <span class="location" data-def="Egypt/<?php echo $ad['governorate'] ?>">
-                                    Egypt/<?php echo $ad['governorate'] ?>
-                                </span>
-                            </div>
+
                         </div>
-                    </div>
+                    </form>
+
                 </div>
-
-            </div>
-        </form>
-
-    </div>
-</main>
+            </main>
 
 <?php
 
@@ -694,7 +675,7 @@ if (isset($_SESSION['username'])) {
             $adImgTmp    = $adImg['tmp_name'];
 
             // Set random name for image
-            $adImgName = 'olx-ad' . rand(0, rand(0, 99999999) * 300) * 999 . $adImgName;
+            $adImgName = 'devlogs-ad' . rand(0, rand(0, 99999999) * 300) * 999 . $adImgName;
 
             // Get image extension
             $adImgType = explode('/', $adImgType);
@@ -742,7 +723,7 @@ if (isset($_SESSION['username'])) {
                 $formErrors[] = "Ad image extension must be : (jpg, png, jpeg).";
             }
 
-            if(!empty($adImg['name']) && $adImgSize > $validSize) {
+            if (!empty($adImg['name']) && $adImgSize > $validSize) {
                 $formErrors[] = "Ad image must be less than 5MB.";
             }
 
@@ -757,13 +738,12 @@ if (isset($_SESSION['username'])) {
 
                 if ($adid > 0) {
 
-                    if(empty($adImg['name'])) {
+                    if (empty($adImg['name'])) {
                         $stmt = $conn->prepare("SELECT image FROM ads WHERE id = ?");
                         $stmt->execute([$adid]);
                         $adImgName = $stmt->fetchColumn();
 
                         echo $adImgName;
-
                     }
 
                     $stmt = $conn->prepare("UPDATE
@@ -780,12 +760,12 @@ if (isset($_SESSION['username'])) {
                                       publish_state = 'pending'
                                   WHERE id = ?
                                 ");
-                    $stmt->execute([$title, $desc, $price, $phoneNumber, $governorate, $itemStatus, $categoryId, $adImgName , $adid]);
+                    $stmt->execute([$title, $desc, $price, $phoneNumber, $governorate, $itemStatus, $categoryId, $adImgName, $adid]);
 
-                   if(!empty($adImg['name'])) {
-                       // Move image to uploads folder
-                       move_uploaded_file($adImgTmp, 'uploads/ads/' . $adImgName);
-                   }
+                    if (!empty($adImg['name'])) {
+                        // Move image to uploads folder
+                        move_uploaded_file($adImgTmp, 'uploads/ads/' . $adImgName);
+                    }
 
                     // Redirect to the My Ads page
                     header("location: myAds.php");

@@ -1641,3 +1641,32 @@ table tr {
     top: 26px;
   }
 }
+
+.logo {
+  font-size: 25px;
+  text-transform: uppercase;
+  color: #ff9d00;
+  font-weight: bold;
+  transition: .3s ease-in-out;
+  position: relative;
+  padding-left: 7px;
+}
+
+.logo:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  width: 4px;
+  height: calc(100% - 10px);
+  background-color: #3f3d56;
+}
+
+.logo:hover {
+  color: #5e5a91;
+}
+
+footer .logo:after {
+  background-color: #fff;
+}
