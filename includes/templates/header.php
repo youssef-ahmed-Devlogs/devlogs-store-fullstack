@@ -32,43 +32,8 @@
 
           <?php if (isset($_SESSION['username'])) { ?>
 
-            <div class="notifications-settings">
-              <div class="notification-icon">
-                <span class="badge bg-danger">23</span>
-                <i class="fas fa-bell fa-lg"></i>
-              </div>
 
-              <ul class="notifications-settings-list">
-                <h6 class="notifications-head">Notifications</h6>
-                <div class="notifications">
-                  <a href="#" class="notification-link">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit
-                    exercitationem expedita distinctio accusamus debitis
-                    sapiente!
-                  </a>
-                  <a href="#" class="notification-link">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit
-                    exercitationem expedita distinctio accusamus debitis
-                    sapiente!
-                  </a>
-                  <a href="#" class="notification-link">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit
-                    exercitationem expedita distinctio accusamus debitis
-                    sapiente!
-                  </a>
-                  <a href="#" class="notification-link">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit
-                    exercitationem expedita distinctio accusamus debitis
-                    sapiente!
-                  </a>
-                </div>
-              </ul>
-            </div>
-            <div class="lang">
-              <span class="lang_trigger_icon">
-                <img src="./assets/images/eg_flag.png" alt="arabic" title="arabic" />
-              </span>
-            </div>
+
             <div class="nav-links">
               <a href="myAds.php?action=add" class="button-border button-secondary-blue">
                 <i class="fas fa-plus"></i>

@@ -1,3 +1,21 @@
-.search-btn {
+.filter__content .search-btn {
+    transform: translate(10px, 10px);
+}
 
+@media (max-width: 1199px) {
+    .filter__content .search-btn {
+        transform: initial;
+        margin-top: 14px;
+    }
+}
+
+@media (max-width: 500px) {
+    .logo img {
+        width: 45px !important;
+        height: 45px !important;
+    }
+    .user-icon img {
+        width: 40px !important;
+        height: 40px !important;
+    }
 }

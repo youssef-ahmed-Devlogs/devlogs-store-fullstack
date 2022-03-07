@@ -129,8 +129,7 @@ include './init.php';
                                     </div>
                                     <div class="col-xl-2">
 
-                                        <button class="btn btn-primary search-btn" title="Search"
-                                            style="transform: translate(10px, 10px);">
+                                        <button class="btn btn-primary search-btn" title="Search">
                                             <i class="fas fa-search"></i>
                                         </button>
 
