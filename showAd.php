@@ -22,7 +22,8 @@ if (isset($_SESSION['username'])) {
                                     users.id AS user_id,
                                     users.username,
                                     users.country,
-                                    users.reg_date AS user_reg_date
+                                    users.reg_date AS user_reg_date,
+                                    users.profile_image
                                 FROM ads 
                                 JOIN categories ON categories.id = ads.category_id
                                 JOIN users ON users.id = ads.user_id
@@ -110,7 +111,7 @@ if (isset($_SESSION['username'])) {
 
                                 <?php
 
-                                $stmt = $conn->prepare("SELECT comments.comment, users.fullname, user_id FROM comments
+                                $stmt = $conn->prepare("SELECT comments.comment, users.fullname, user_id, users.profile_image FROM comments
                                                             JOIN users ON users.id = comments.user_id
                                                             WHERE comments.ad_id = ?
                                                             ORDER BY comments.id DESC
@@ -139,7 +140,7 @@ if (isset($_SESSION['username'])) {
                                     <?php foreach ($comments as $comment) { ?>
                                         <div class="comment mt-3 box_style_content">
                                             <div class="user-info">
-                                                <img src="assets/images/item-empty-img.png" alt="">
+                                                <img src="./uploads/users/<?php echo $comment['profile_image'] ?>" alt="">
                                                 <a href="profile.php?userId=<?php echo $comment['user_id'] ?>" class="fullname">
                                                     <?php echo $comment['fullname'] ?>
                                                 </a>
@@ -277,7 +278,7 @@ if (isset($_SESSION['username'])) {
 
                                 <a href="profile.php?userId=<?php echo $ad['user_id']  ?>" class="user__details ad__publisher">
                                     <div>
-                                        <img src="./assets/images/user-pic2.jpg" alt="user image" />
+                                        <img src="./uploads/users/<?php echo $ad['profile_image'] ?>" alt="">
                                     </div>
                                     <div>
                                         <h5 class="mb-0">

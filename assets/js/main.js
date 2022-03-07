@@ -202,66 +202,71 @@ if (document.querySelector(".profile_page") !== null) {
   }
 }
 
-const formPreview = document.getElementById("from_preview");
-const cardPrdouctEdited = formPreview.querySelector(".card__product");
+if(document.querySelector("#from_preview") !== null) {
 
-let TitleSpan = cardPrdouctEdited.querySelector(".title");
-let DescSpan = cardPrdouctEdited.querySelector(".desc");
-let PriceSpan = cardPrdouctEdited.querySelector(".price .number");
-let qateogrySpan = cardPrdouctEdited.querySelector(".category");
-let locationSpan = cardPrdouctEdited.querySelector(".location");
-const EditedDate = cardPrdouctEdited.querySelector(".date");
+    const formPreview = document.getElementById("from_preview");
+    const cardPrdouctEdited = formPreview.querySelector(".card__product");
 
-const EditTitle = formPreview.title;
-const EditedDesc = formPreview.desc;
-const EditedPrice = formPreview.price;
-const EditQategory = formPreview.category;
-const Editgovernorate = formPreview.governorate;
+    let TitleSpan = cardPrdouctEdited.querySelector(".title");
+    let DescSpan = cardPrdouctEdited.querySelector(".desc");
+    let PriceSpan = cardPrdouctEdited.querySelector(".price .number");
+    let qateogrySpan = cardPrdouctEdited.querySelector(".category");
+    let locationSpan = cardPrdouctEdited.querySelector(".location");
+    const EditedDate = cardPrdouctEdited.querySelector(".date");
+
+    const EditTitle = formPreview.title;
+    const EditedDesc = formPreview.desc;
+    const EditedPrice = formPreview.price;
+    const EditQategory = formPreview.category;
+    const Editgovernorate = formPreview.governorate;
 // EditTitle.addEventListener("input", livePreivew);
-EditTitle.addEventListener("input", (e) => {
-  Livepriew(e.target.value, TitleSpan, "Title");
-});
+    EditTitle.addEventListener("input", (e) => {
+        Livepriew(e.target.value, TitleSpan, "Title");
+    });
 
-EditedDesc.addEventListener("input", (e) => {
-  Livepriew(e.target.value, DescSpan, "Description written here");
-});
-EditedPrice.addEventListener("change", (e) => {
-  Livepriew(e.target.value, PriceSpan, 100);
-});
+    EditedDesc.addEventListener("input", (e) => {
+        Livepriew(e.target.value, DescSpan, "Description written here");
+    });
+    EditedPrice.addEventListener("change", (e) => {
+        Livepriew(e.target.value, PriceSpan, 100);
+    });
 
-Editgovernorate.addEventListener("change", (e) => {
-  Livepriew("Egypt/" + e.target.value, locationSpan, "Egypt/cairo");
-});
+    Editgovernorate.addEventListener("change", (e) => {
+        Livepriew("Egypt/" + e.target.value, locationSpan, "Egypt/cairo");
+    });
 
-function Livepriew(value, ele, def) {
-  ele.innerHTML = value == "" ? def : value;
-}
+    function Livepriew(value, ele, def) {
+        ele.innerHTML = value == "" ? def : value;
+    }
 
-let date = new Date();
-const year = date.getFullYear();
-const month = date.getMonth() < 10 ? "0" + date.getMonth() : date.getMonth();
-const day =
-  date.getUTCDate() < 10 ? "0" + date.getUTCDate() : date.getUTCDate();
+    let date = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth() < 10 ? "0" + date.getMonth() : date.getMonth();
+    const day =
+        date.getUTCDate() < 10 ? "0" + date.getUTCDate() : date.getUTCDate();
 
-date = `${year}-${month}-${day}`;
-console.log(date);
-EditedDate.innerHTML = date;
+    date = `${year}-${month}-${day}`;
+    console.log(date);
+    EditedDate.innerHTML = date;
 
-const addImg = document.getElementById("ad_image");
-addImg.addEventListener("change", uplaodImg);
+    const addImg = document.getElementById("ad_image");
+    addImg.addEventListener("change", uplaodImg);
 
-let imgAge = document.getElementById("prdouct__img");
-function uplaodImg() {
-  let file = this.files[0];
+    let imgAge = document.getElementById("prdouct__img");
 
-  getBase64(file);
-}
+    function uplaodImg() {
+        let file = this.files[0];
 
-function getBase64(file) {
-  let reader = new FileReader(file);
+        getBase64(file);
+    }
 
-  reader.readAsDataURL(file);
-  reader.onload = function () {
-    imgAge.src = reader.result;
-  };
+    function getBase64(file) {
+        let reader = new FileReader(file);
+
+        reader.readAsDataURL(file);
+        reader.onload = function () {
+            imgAge.src = reader.result;
+        };
+    }
+
 }

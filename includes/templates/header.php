@@ -78,7 +78,14 @@
             <div class="user-settings">
               <div class="user">
                 <div class="user-icon">
-                  <img src="./assets/images/user-pic1.jpg" alt="user picture" title="user picture" />
+                    <?php
+
+                        $stmt = $conn->prepare("SELECT profile_image FROM users WHERE id = ?");
+                        $stmt->execute([$_SESSION['id']]);
+                        $uImg = $stmt->fetchColumn();
+
+                    ?>
+                  <img src="./uploads/users/<?php echo $uImg ?>" alt="user picture" title="user picture" />
                 </div>
               </div>
 
@@ -87,7 +94,7 @@
                 <a href="myProfile.php" class="user-settings-link">
                   <div class="user">
                     <div class="user-icon">
-                      <img src="./assets/images/user-pic1.jpg" alt="user picture" title="user picture" />
+                        <img src="./uploads/users/<?php echo $uImg ?>" alt="user picture" title="user picture" />
                     </div>
                     <?php echo $_SESSION['username'] ?>
                   </div>
@@ -109,7 +116,7 @@
                   <i class="fas fa-star"></i>
                   Favourite
                 </a>
-                <a href="./pages/settings.html" class="user-settings-link">
+                <a href="settings.php" class="user-settings-link">
                   <i class="fas fa-cog"></i>
                   Settings
                 </a>

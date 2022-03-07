@@ -57,3 +57,8 @@
 .settings_page select{
     width: 100%;
 }
+
+.middel_section_img img,
+.profile_img img {
+    background: #fff;
+}

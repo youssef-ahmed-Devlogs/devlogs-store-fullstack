@@ -321,8 +321,7 @@ if (isset($_SESSION['username'])) {
                 </div>
                 <div class="col-xl-4">
                     <div class="product card__product">
-                        <img class="product__img" id="prdouct__img" src="./assets/images/item-empty-img.png"
-                            alt="product" />
+                        <img class="product__img" src="./assets/images/item-empty-img.png" alt="product" />
                         <div class="product__info">
                             <div class="main__info">
                                 <div class="title__category">
@@ -605,34 +604,37 @@ if (isset($_SESSION['username'])) {
                 </div>
                 <div class="col-xl-4">
                     <div class="product card__product">
-                        <img class="product__img" src="./assets/images/item-empty-img.png" alt="product" />
+                        <img class="product__img" src="./uploads/ads/<?php echo $ad['image'] ?>" alt="product" />
                         <div class="product__info">
                             <div class="main__info">
                                 <div class="title__category">
-                                    <span class="title">
-                                        Title
+                                    <span class="title" data-def="<?php echo $ad['title'] ?>">
+                                        <?php echo $ad['title'] ?>
                                     </span>
-                                    <span class="category">
-                                        Phones
+                                    <?php
+
+                                    $stmtt = $conn->prepare("SELECT title FROM categories WHERE id = ?");
+                                    $stmtt->execute([$ad['category_id']]);
+                                    $pCat =  $stmtt->fetchColumn();
+
+                                    ?>
+                                    <span class="category" data-def="<?php echo $pCat ?>">
+                                        <?php echo $pCat ?>
                                     </span>
                                 </div>
                                 <div class="price">
-                                    <span class="number">
-                                        534
+                                    <span class="number" data-def="<?php echo $ad['price'] ?>">
+                                        <?php echo $ad['price'] ?>
                                     </span>
                                     <span class="currency">EGP</span>
                                 </div>
                             </div>
-                            <p class="desc">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia tempora nam
-                                quidem dolorem enim nostrum asperiores magni accusamus ut incidunt...
-                            </p>
                             <div class="date__location">
-                                <span class="date">
-                                    2022-03-02
+                                <span class="date" data-def="<?php echo $ad['added_date'] ?>">
+                                    <?php echo $ad['added_date'] ?>
                                 </span>
-                                <span class="location">
-                                    Egypt/Cairo
+                                <span class="location" data-def="Egypt/<?php echo $ad['governorate'] ?>">
+                                    Egypt/<?php echo $ad['governorate'] ?>
                                 </span>
                             </div>
                         </div>

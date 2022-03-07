@@ -22,14 +22,24 @@ if (isset($_SESSION['username'])) {
     <main class="profile_page">
         <!-- Swiper -->
         <div class="profile_bg_section">
-            <img src="./assets/images/sider.jpg " class="bg_img" alt="">
+            <!-- Cover Image -->
+            <?php if(!empty($user['cover_image'])) { ?>
+                <img src="./uploads/users/<?php echo $user['cover_image'] ?>" class="bg_img" alt="">
+            <?php } else { ?>
+                <img src="./assets/images/sider.jpg " class="bg_img" alt="">
+            <?php } ?>
         </div>
         <div class="container">
             <div class="middel_section">
                 <div class="row mt-3">
                     <div class="col-lg-3">
                         <div class="middel_section_img">
-                            <img src="assets/images/user-pic1.jpg" alt="">
+                            <!-- Profile Image -->
+                            <?php if(!empty($user['profile_image'])) { ?>
+                                <img src="./uploads/users/<?php echo $user['profile_image'] ?>" alt="">
+                            <?php } else { ?>
+                                <img src="assets/images/user-empty.png" alt="">
+                            <?php } ?>
                         </div>
                     </div>
                     <div class="col-lg-9">
