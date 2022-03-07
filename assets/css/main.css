@@ -1469,7 +1469,7 @@ table tr {
   display: none;
 }
 .menue_alien .dropdown i {
-  font-size: 33px;
+  font-size: 23px;
 }
 .card__product_row .product__info {
   position: initial !important;
@@ -1558,6 +1558,7 @@ table tr {
   height: 295.5px;
 }
 
+.profile_page .profile_img,
 .settings_page .profile_img {
   width: max-content;
   margin: 0 auto;
@@ -1611,4 +1612,32 @@ table tr {
 .middel_section_img img,
 .profile_img img {
   background: #fff;
+}
+
+.trust-check {
+  position: absolute;
+  right: -2px;
+  top: 30px;
+  color: #508ee4;
+  font-size: 16px;
+  background: #fff;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  line-height: 24px;
+  text-align: center;
+}
+
+.ad__deials__page .trust-check {
+  width: 17px;
+  height: 17px;
+  line-height: 17px;
+  text-align: center;
+  font-size: 13px;
+}
+
+@media (max-width: 500px) {
+  .ad__deials__page .trust-check {
+    top: 26px;
+  }
 }

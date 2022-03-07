@@ -23,7 +23,8 @@ if (isset($_SESSION['username'])) {
                                     users.username,
                                     users.country,
                                     users.reg_date AS user_reg_date,
-                                    users.profile_image
+                                    users.profile_image,
+                                    users.trust_user
                                 FROM ads 
                                 JOIN categories ON categories.id = ads.category_id
                                 JOIN users ON users.id = ads.user_id
@@ -32,7 +33,7 @@ if (isset($_SESSION['username'])) {
         $stmt->execute([$adid]);
         $ad = $stmt->fetch();
 
-?>
+        ?>
 
         <!-- START MAIN SECTION -->
         <main class="ad__deials__page section">
@@ -43,69 +44,134 @@ if (isset($_SESSION['username'])) {
                 <div class="main-content">
 
                     <div class="row">
-                        <div class="col-xl-9 col-12">
-                            <div class="left-section">
-                                <div class="addDetails-img fancy-gallery">
+                        <div class="col-xl-12">
+                            <div class="row">
+                                <div class="col-xl-9">
+                                    <div class="left-section">
+                                        <div class="addDetails-img fancy-gallery">
 
-                                    <!-- Image -->
-                                    <?php if (!empty($ad['image'])) { ?>
-                                        <a
-                                                data-fancybox="gallery"
-                                                data-caption="<?php echo $ad['title'] ?>"
-                                                href="./uploads/ads/<?php echo $ad['image'] ?>"
-                                        >
-                                            <img class="main-img w-100" src="./uploads/ads/<?php echo $ad['image'] ?>" alt="product"/>
+                                            <!-- Image -->
+                                            <?php if (!empty($ad['image'])) { ?>
+                                                <a
+                                                        data-fancybox="gallery"
+                                                        data-caption="<?php echo $ad['title'] ?>"
+                                                        href="./uploads/ads/<?php echo $ad['image'] ?>"
+                                                >
+                                                    <img class="main-img w-100"
+                                                         src="./uploads/ads/<?php echo $ad['image'] ?>" alt="product"/>
+                                                </a>
+                                                <a
+                                                        data-fancybox="gallery"
+                                                        data-caption="<?php echo $ad['title'] ?>"
+                                                        href="./uploads/ads/<?php echo $ad['image'] ?>"
+                                                ></a>
+                                            <?php } else { ?>
+                                                <a data-fancybox="gallery" data-caption="image"
+                                                   href="assets/images/item-empty-img.png">
+                                                    <img class="main-img w-100" src="./assets/images/item-empty-img.png"
+                                                         alt="product"/>
+                                                </a>
+                                            <?php } ?>
+                                        </div>
+
+                                        <div class="product-info mb-4">
+                                            <ul class="unstyled">
+                                                <li>
+                                                    <span> Item Status </span>
+                                                    <strong>
+                                                        <?php echo $ad['item_status'] ?>
+                                                    </strong>
+                                                </li>
+                                                <li>
+                                                    <span> Category </span>
+                                                    <strong>
+                                                        <?php echo $ad['category_title'] ?>
+                                                    </strong>
+                                                </li>
+                                                <li>
+                                                    <span> Location </span>
+                                                    <strong>
+                                                        <?php echo $ad['country'] . '/' . $ad['governorate'] ?>
+                                                    </strong>
+                                                </li>
+                                                <li>
+                                                    <span> Added Date </span>
+                                                    <strong>
+                                                        <?php echo $ad['added_date'] ?>
+                                                    </strong>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                        <div class="product__desc">
+                                            <h2 class="section__head">Ad Description</h2>
+                                        </div>
+                                        <div class="product-desc">
+                                            <?php echo $ad['description'] ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3">
+                                    <div class="right-section">
+                                <span class="triangle text-center d-block mb-2">
+                                    <?php echo $ad['price'] ?>
+                                    <span class="dollar__sign">L.E</span>
+                                </span>
+                                        <!-- calling -->
+                                        <a href="tel: <?php echo $ad['phone_number'] ?>" class="button button-secondary-blue mb-1 w-100">
+                                            <i class="fas fa-mobile-alt"></i>
+                                            <span>
+                                                <?php echo $ad['phone_number'] ?>
+                                            </span>
                                         </a>
-                                        <a
-                                                data-fancybox="gallery"
-                                                data-caption="<?php echo $ad['title'] ?>"
-                                                href="./uploads/ads/<?php echo $ad['image'] ?>"
-                                        ></a>
-                                    <?php } else { ?>
-                                        <a data-fancybox="gallery" data-caption="image"
-                                           href="assets/images/item-empty-img.png">
-                                            <img class="main-img w-100" src="./assets/images/item-empty-img.png"
-                                                 alt="product"/>
+
+                                        <a href="profile.php?userId=<?php echo $ad['user_id'] ?>"
+                                           class="user__details ad__publisher">
+                                            <div class="position-relative">
+                                                <img src="./uploads/users/<?php echo $ad['profile_image'] ?>" alt="">
+                                                <?php if($ad['trust_user'] == 1) { ?>
+                                                    <span class="trust-check" title="Trust User">
+                                                        <i class="fas fa-check-circle"></i>
+                                                    </span>
+                                                <?php } ?>
+                                            </div>
+                                            <div>
+                                                <h5 class="mb-0">
+
+                                                    <?php echo $ad['username'] ?>
+
+                                                </h5>
+                                                <p>
+                                                    On site since <?php echo $ad['user_reg_date'] ?>
+                                                </p>
+                                            </div>
                                         </a>
-                                    <?php } ?>
-                                </div>
 
-                                <div class="product-info mb-4">
-                                    <ul class="unstyled">
-                                        <li>
-                                            <span> Item Status </span>
-                                            <strong>
-                                                <?php echo $ad['item_status'] ?>
-                                            </strong>
-                                        </li>
-                                        <li>
-                                            <span> Category </span>
-                                            <strong>
-                                                <?php echo $ad['category_title'] ?>
-                                            </strong>
-                                        </li>
-                                        <li>
-                                            <span> Location </span>
-                                            <strong>
-                                                <?php echo $ad['country'] . '/' . $ad['governorate'] ?>
-                                            </strong>
-                                        </li>
-                                        <li>
-                                            <span> Added Date </span>
-                                            <strong>
-                                                <?php echo $ad['added_date'] ?>
-                                            </strong>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                                <div class="product__desc">
-                                    <h2 class="section__head">Ad Description</h2>
-                                </div>
-                                <div class="product-desc">
-                                    <?php echo $ad['description'] ?>
+                                        <!-- any thing -->
+                                        <div class="important-tips">
+                                            <h3 class="section__head-sm">Important Safety Tips</h3>
+                                            <ol class="pe-3">
+                                                <li class="mb-2">Only meet in public/crowded places for example metro
+                                                    stations and malls.
+                                                </li>
+                                                <li class="mb-2">Never go alone to meet a buyer/seller, always take
+                                                    someone with you
+                                                </li>
+                                                <li class="mb-2">Check and inspect the product properly before
+                                                    purchasing it
+                                                </li>
+                                                <li class="mb-2">
+                                                    Never pay anything in advance or transfer money before inspecting
+                                                    the product
+                                                </li>
+                                            </ol>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-xl-9 col-12">
+
 
                             <div class="comments-section box_style_content">
 
@@ -134,14 +200,25 @@ if (isset($_SESSION['username'])) {
                                         </button>
                                     </div>
                                     <input type="hidden" name="adid" value="<?php echo $adid ?>">
-                                    <textarea name="comment" class="form-control mt-4 mb-4" cols="30" rows="5" placeholder="Write a comment"></textarea>
+                                    <textarea name="comment" class="form-control mt-4 mb-4" cols="30" rows="5"
+                                              placeholder="Write a comment"></textarea>
                                 </form>
                                 <div class="comments-list">
                                     <?php foreach ($comments as $comment) { ?>
                                         <div class="comment mt-3 box_style_content">
-                                            <div class="user-info">
-                                                <img src="./uploads/users/<?php echo $comment['profile_image'] ?>" alt="">
-                                                <a href="profile.php?userId=<?php echo $comment['user_id'] ?>" class="fullname">
+                                            <div class="user-info d-flex align-items-center gap-1">
+                                                <div class="position-relative">
+                                                    <img src="./uploads/users/<?php echo $comment['profile_image'] ?>"
+                                                         alt="">
+                                                    <?php if($ad['trust_user'] == 1) { ?>
+                                                        <span class="trust-check" title="Trust User">
+                                                        <i class="fas fa-check-circle"></i>
+                                                    </span>
+                                                    <?php } ?>
+                                                </div>
+
+                                                <a href="profile.php?userId=<?php echo $comment['user_id'] ?>"
+                                                   class="fullname">
                                                     <?php echo $comment['fullname'] ?>
                                                 </a>
                                             </div>
@@ -149,7 +226,7 @@ if (isset($_SESSION['username'])) {
                                                 <?php echo $comment['comment'] ?>
                                             </p>
                                         </div>
-                                    <?php
+                                        <?php
 
                                     }
 
@@ -193,7 +270,7 @@ if (isset($_SESSION['username'])) {
 
 
                                         foreach ($ads_for_this_user as $user_ads) {
-                                        ?>
+                                            ?>
                                             <div class="swiper-slide">
                                                 <div class="product card__product">
                                                     <?php
@@ -203,26 +280,31 @@ if (isset($_SESSION['username'])) {
                                                         $stmt->execute([$user_ads['ad_id'], $_SESSION['id']]);
                                                         $inFav = $stmt->rowCount();
 
-                                                    ?>
-                                                        <a href="favourite.php?action=add&adid=<?php echo $user_ads['ad_id'] ?>" class="add__to__fav <?php echo $inFav == 1 ? 'active' : '' ?>">
+                                                        ?>
+                                                        <a href="favourite.php?action=add&adid=<?php echo $user_ads['ad_id'] ?>"
+                                                           class="add__to__fav <?php echo $inFav == 1 ? 'active' : '' ?>">
                                                             <i class="fas fa-star"></i>
                                                         </a>
                                                     <?php } else { ?>
                                                         <a href="login.php" class="add__to__fav">
                                                             <i class="fas fa-star"></i>
                                                         </a>
-                                                    <?php
+                                                        <?php
                                                     }
                                                     ?>
 
 
                                                     <!-- Image -->
-                                                    <?php if(!empty($user_ads['image'])) { ?>
-                                                        <img class="product__img" src="./uploads/ads/<?php echo $user_ads['image'] ?>" alt="product" />
+                                                    <?php if (!empty($user_ads['image'])) { ?>
+                                                        <img class="product__img"
+                                                             src="./uploads/ads/<?php echo $user_ads['image'] ?>"
+                                                             alt="product"/>
                                                     <?php } else { ?>
-                                                        <img class="product__img" src="./assets/images/item-empty-img.png" alt="product" />
-                                                    <?php }?>
-                                                    <a href="showAd.php?id=<?php echo $user_ads['ad_id'] ?>" class="product__info">
+                                                        <img class="product__img"
+                                                             src="./assets/images/item-empty-img.png" alt="product"/>
+                                                    <?php } ?>
+                                                    <a href="showAd.php?id=<?php echo $user_ads['ad_id'] ?>"
+                                                       class="product__info">
                                                         <div class="main__info">
                                                             <div class="title__category">
                                                                 <span class="title">
@@ -259,58 +341,19 @@ if (isset($_SESSION['username'])) {
                         </div>
                         <!-- rignt section -->
                         <div class="col-xl-3 col-12">
-                            <div class="right-section">
-                                <span class="triangle text-center d-block mb-2">
-                                    <?php echo $ad['price'] ?>
-                                    <span class="dollar__sign">L.E</span>
-                                </span>
-                                <a href="#" class="button button-secondary-blue mb-1 w-100">
-                                    <i class="far fa-envelope-open"></i>
-                                    <span>send message</span>
-                                </a>
-                                <!-- calling -->
-                                <button class="button button-secondary-blue mb-1 w-100">
-                                    <i class="fas fa-phone"></i>
-                                    <span>
-                                        <?php echo $ad['phone_number'] ?>
-                                    </span>
-                                </button>
 
-                                <a href="profile.php?userId=<?php echo $ad['user_id']  ?>" class="user__details ad__publisher">
-                                    <div>
-                                        <img src="./uploads/users/<?php echo $ad['profile_image'] ?>" alt="">
-                                    </div>
-                                    <div>
-                                        <h5 class="mb-0">
-
-                                            <?php echo $ad['username'] ?>
-
-                                        </h5>
-                                        <p>
-                                            On site since <?php echo $ad['user_reg_date'] ?>
-                                        </p>
-                                    </div>
-                                </a>
-
-                                <!-- any thing -->
-                                <div class="important-tips">
-                                    <h3 class="section__head-sm">Important Safety Tips</h3>
-                                    <ol class="pe-3">
-                                        <li class="mb-2">Only meet in public/crowded places for example metro stations and malls.</li>
-                                        <li class="mb-2">Never go alone to meet a buyer/seller, always take someone with you</li>
-                                        <li class="mb-2">Check and inspect the product properly before purchasing it</li>
-                                        <li class="mb-2">
-                                            Never pay anything in advance or transfer money before inspecting the product
-                                        </li>
-                                    </ol>
-                                </div>
-                            </div>
 
                             <!-- START CATEGORIES SECTION -->
 
                             <div class="categories__section mt-4">
-                                <h2 class="section__head-sm">Categories</h2>
-                                <ul class="categories__list">
+                                <h2 class="Category_button section__head-sm d-flex justify-content-between align-items-center"
+                                    data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="true"
+                                    aria-controls="collapseExample">Categories<i class="fas fa-caret-down"></i>
+                                </h2>
+                                <span data-bs-toggle="collapse" role="button" aria-expanded="true"
+                                      aria-controls="collapseExample" href="#collapseExample"
+                                      class="d-none text-center">...</span>
+                                <ul class="categories__list collapse show" id="collapseExample">
                                     <?php
                                     $stmt = $conn->prepare("SELECT * FROM categories WHERE parent = 0");
                                     $stmt->execute();
@@ -386,7 +429,7 @@ if (isset($_SESSION['username'])) {
 
 
                                 foreach ($another_ads as $another_ad) {
-                                ?>
+                                    ?>
                                     <div class="swiper-slide">
                                         <div class="product card__product">
                                             <?php
@@ -396,26 +439,31 @@ if (isset($_SESSION['username'])) {
                                                 $stmt->execute([$another_ad['ad_id'], $_SESSION['id']]);
                                                 $inFav = $stmt->rowCount();
 
-                                            ?>
-                                                <a href="favourite.php?action=add&adid=<?php echo $another_ad['ad_id'] ?>" class="add__to__fav <?php echo $inFav == 1 ? 'active' : '' ?>">
+                                                ?>
+                                                <a href="favourite.php?action=add&adid=<?php echo $another_ad['ad_id'] ?>"
+                                                   class="add__to__fav <?php echo $inFav == 1 ? 'active' : '' ?>">
                                                     <i class="fas fa-star"></i>
                                                 </a>
                                             <?php } else { ?>
                                                 <a href="login.php" class="add__to__fav">
                                                     <i class="fas fa-star"></i>
                                                 </a>
-                                            <?php
+                                                <?php
                                             }
                                             ?>
 
 
                                             <!-- Image -->
-                                            <?php if(!empty($another_ad['image'])) { ?>
-                                                <img class="product__img" src="./uploads/ads/<?php echo $another_ad['image'] ?>" alt="product" />
+                                            <?php if (!empty($another_ad['image'])) { ?>
+                                                <img class="product__img"
+                                                     src="./uploads/ads/<?php echo $another_ad['image'] ?>"
+                                                     alt="product"/>
                                             <?php } else { ?>
-                                                <img class="product__img" src="./assets/images/item-empty-img.png" alt="product" />
-                                            <?php }?>
-                                            <a href="showAd.php?id=<?php echo $another_ad['ad_id'] ?>" class="product__info">
+                                                <img class="product__img" src="./assets/images/item-empty-img.png"
+                                                     alt="product"/>
+                                            <?php } ?>
+                                            <a href="showAd.php?id=<?php echo $another_ad['ad_id'] ?>"
+                                               class="product__info">
                                                 <div class="main__info">
                                                     <div class="title__category">
                                                         <span class="title">
@@ -454,52 +502,12 @@ if (isset($_SESSION['username'])) {
                 </div>
 
 
-                <div class="row mt-4">
-                    <div class="col-lg-9 col-12">
-                        <h3 class="section__head">contact center</h3>
-                        <div class="form-content">
-                            <div class="phone">
-                                <!-- icom -->
-
-                                <!-- form -->
-                            </div>
-                            <form>
-                                <input class="w-100 mb-2" type="email" placeholder="email" />
-                                <textarea class="w-100" name="message" id="textarea" placeholder="message"></textarea>
-                                <div class="custom-file">
-                                    <label class="button-secondary-blue mt-2" for="uploadAttachment"><span><i class="fas fa-link"></i></span> upload
-                                        Attachment</label>
-
-                                    <input type="file" id="uploadAttachment" />
-                                </div>
-                            </form>
-                            <div class="add_attachment">
-                                <!-- <div>
-                <a href="">Add attachment</a>
-                </div> -->
-
-                                <div>
-                                    <button class="button-secondary-blue">
-                                        <span><i class="fas fa-paper-plane"></i></span>send
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="ads__banner h-100 border">
-                            Blank space for advertisement
-                        </div>
-                    </div>
-                </div>
-
-                <!-- comment section -->
             </div>
         </main>
         <!-- END MAIN SECTION -->
 
 
-<?php
+        <?php
 
     } else {
         header('location: index.php');

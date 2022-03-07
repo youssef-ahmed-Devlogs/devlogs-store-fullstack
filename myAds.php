@@ -90,11 +90,7 @@ if (isset($_SESSION['username'])) {
                     <?php foreach ($ads as $ad) { ?>
                     <tr>
                         <td>
-                            <?php if(!empty($ad['image'])) { ?>
-                            <img style="width: 100px;" src="./uploads/ads/<?php echo $ad['image'] ?>" alt="">
-                            <?php } else { ?>
-                            <img style="width: 100px;" src="./assets/images/item-empty-img.png" alt="">
-                            <?php }?>
+                            <img src="./uploads/ads/<?php echo $ad['image'] ?>" alt="">
                         </td>
                         <td>
                             <?php echo $ad['title'] ?>
@@ -708,6 +704,8 @@ if (isset($_SESSION['username'])) {
             $validSize = (5 * 1024) * 1024; // 5MB
             $validExtensions = ['jpg', 'png', 'jpeg'];
 
+            $formErrors = [];
+
             if (empty($title)) {
                 $formErrors[] = "Title can't be empty.";
             } elseif (strlen($title) < 8) {
@@ -740,13 +738,11 @@ if (isset($_SESSION['username'])) {
                 $formErrors[] = "Category Status can't be empty.";
             }
 
-            if(empty($adImg['name'])) {
-                $formErrors[] = "Ad image can't be empty.";
-            } elseif (!in_array($adImgType, $validExtensions)) {
+            if (!empty($adImg['name']) && !in_array($adImgType, $validExtensions)) {
                 $formErrors[] = "Ad image extension must be : (jpg, png, jpeg).";
             }
 
-            if($adImgSize > $validSize) {
+            if(!empty($adImg['name']) && $adImgSize > $validSize) {
                 $formErrors[] = "Ad image must be less than 5MB.";
             }
 
@@ -760,6 +756,15 @@ if (isset($_SESSION['username'])) {
 
 
                 if ($adid > 0) {
+
+                    if(empty($adImg['name'])) {
+                        $stmt = $conn->prepare("SELECT image FROM ads WHERE id = ?");
+                        $stmt->execute([$adid]);
+                        $adImgName = $stmt->fetchColumn();
+
+                        echo $adImgName;
+
+                    }
 
                     $stmt = $conn->prepare("UPDATE
                                       ads
@@ -777,8 +782,10 @@ if (isset($_SESSION['username'])) {
                                 ");
                     $stmt->execute([$title, $desc, $price, $phoneNumber, $governorate, $itemStatus, $categoryId, $adImgName , $adid]);
 
-                    // Move image to uploads folder
-                    move_uploaded_file($adImgTmp, 'uploads/ads/' . $adImgName);
+                   if(!empty($adImg['name'])) {
+                       // Move image to uploads folder
+                       move_uploaded_file($adImgTmp, 'uploads/ads/' . $adImgName);
+                   }
 
                     // Redirect to the My Ads page
                     header("location: myAds.php");

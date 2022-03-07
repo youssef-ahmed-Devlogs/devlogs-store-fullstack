@@ -100,7 +100,7 @@ if (isset($_SESSION['username'])) {
                             <input type="email" name="email" id="email" placeholder="Update your email" value="<?php echo $user['email'] ?>"/>
                         </div>
                     </div>
-                    <div class="col-lg-6 mb-3">
+                    <div class="col-xl-6 mb-3">
                         <div class="form-group">
                             <label for="country">Country</label>
                             <select name="country" id="country">

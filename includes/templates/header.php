@@ -69,10 +69,6 @@
                   <i class="fas fa-ad"></i>
                   My Ads
                 </a>
-                <a href="./pages/messages.html" class="user-settings-link">
-                  <i class="fas fa-envelope"></i>
-                  Messages
-                </a>
                 <a href="myAds.php?action=add" class="user-settings-link">
                   <i class="fas fa-plus"></i>
                   Add ad

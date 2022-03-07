@@ -95,10 +95,15 @@ if (document.querySelector(".ad__deials__page") !== null) {
     });
   }
 
+  swiperConf(".another__products", 4);
   swiperConf(".other__ads__seller", 3);
 
-  swiperConf(".another__products", 4);
 }
+
+if(document.querySelector(".profile_page .another__products") != null) {
+  swiperConf(".another__products", 3);
+}
+
 
 // END AD DETAILS PAGE
 

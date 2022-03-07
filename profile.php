@@ -37,58 +37,74 @@ if (isset($_SESSION['username']) && isset($_GET['userId'])) {
                     <div class="row mt-3">
                         <div class="col-lg-3">
                             <div class="middel_section_img">
+                                <div class="profile_img">
+
                                 <!-- Profile Image -->
                                 <?php if(!empty($user['profile_image'])) { ?>
                                     <img src="./uploads/users/<?php echo $user['profile_image'] ?>" alt="">
                                 <?php } else { ?>
                                     <img src="assets/images/user-empty.png" alt="">
                                 <?php } ?>
+
+                                    <?php if($user['trust_user'] == 1) { ?>
+                                        <span class="trust-check" title="Trust User">
+                                            <i class="fas fa-check-circle"></i>
+                                        </span>
+                                    <?php } ?>
+
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-9">
-                            <div class="user_nameAnd_desc">
+                            <div class="user_nameAnd_desc user_nameAnd_desc-col">
                                 <h3 class="m-0">
                                     <?php echo $user['fullname'] ?>
                                 </h3>
                                 <p class="mt-0">
                                     @<?php echo $user['username'] ?>
                                 </p>
+                                <small>
+                                    On site since
+                                    <?php echo $user['reg_date'] ?>
+                                </small>
 
                             </div>
                         </div>
                     </div>
 
                 </div>
-                <div class="row">
+                <div class="row left-content">
                     <div class="col-lg-3">
                         <div class="user_info_right box_style_content">
-                            <div class="d-flex">
-                                <span class="mr-1"><i class="fas fa-map-marker-alt"></i></span>
-                                <a>
+                            <div class="d-flex align-items-center">
+                                <span class="mr-1">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </span>
+                                <span class="text">
                                     <?php echo $user['country'] ?>
-                                </a>
+                                </span>
                             </div>
-                            <div class="d-flex">
+                            <div class="d-flex align-items-center">
                                 <span><i class="fas fa-envelope"></i></span>
-                                <a href="mailto:abdoRaibe.6a@gmail.com">
+                                <a href="mailto:abdoRaibe.6a@gmail.com" class="text">
                                     <?php echo $user['email'] ?>
                                 </a>
                             </div>
 
-                            <button class="chat_btn"><i class="fas fa-comment"></i> caht</button>
-                            <div class="last_rating">
-                                <div>
-                                    <span><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> <i class="fas fa-star"></i> </span>
-                                    <div class="mt-0">1312 reviwes</div>
-                                </div>
-                            </div>
+
                         </div>
 
                         <!-- START CATEGORIES SECTION -->
 
                         <div class="categories__section mt-4">
-                            <h2 class="section__head-sm">Categories</h2>
-                            <ul class="categories__list">
+                            <h2 class="Category_button section__head-sm d-flex justify-content-between align-items-center"
+                                data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="true"
+                                aria-controls="collapseExample">Categories<i class="fas fa-caret-down"></i>
+                            </h2>
+                            <span data-bs-toggle="collapse" role="button" aria-expanded="true"
+                                  aria-controls="collapseExample" href="#collapseExample"
+                                  class="d-none text-center">...</span>
+                            <ul class="categories__list collapse show" id="collapseExample">
                                 <?php
                                 $stmt = $conn->prepare("SELECT * FROM categories WHERE parent = 0");
                                 $stmt->execute();
@@ -153,7 +169,7 @@ if (isset($_SESSION['username']) && isset($_GET['userId'])) {
 
                                     ?>
 
-                                    <div class="col-lg-4 px-2 col_option mb-4">
+                                    <div class="col-xl-4 col-lg-6 px-2 col_option mb-4">
                                         <div class="product card__product">
                                             <?php
                                             if (isset($_SESSION['username'])) {
@@ -209,6 +225,20 @@ if (isset($_SESSION['username']) && isset($_GET['userId'])) {
                                             </a>
                                         </div>
                                     </div>
+                                <?php } ?>
+
+                                <!-- If no has ads posted -->
+                                <?php
+
+                                if (count($ads) == 0) { ?>
+
+                                    <div class="page-empty text-center">
+                                        <div>
+                                            <img src="assets/images/myads-empty.png" alt="">
+                                            <span>No ads posted at the moment.</span>
+                                        </div>
+                                    </div>
+
                                 <?php } ?>
                             </div>
                         </div>

@@ -174,27 +174,57 @@ if (isset($_SESSION['username'])) {
           </div>
         </div>
         <div class="col-xl-3">
-          <!-- START CATEGORIES SECTION -->
+            <!-- START CATEGORIES SECTION -->
 
-          <div class="categories__section">
-            <h2 class="section__head-sm">Categories</h2>
-            <ul class="categories__list">
-              <?php
-              $stmt = $conn->prepare("SELECT * FROM categories");
-              $stmt->execute();
-              $categories = $stmt->fetchAll();
+            <div class="categories__section mt-4">
+                <h2 class="Category_button section__head-sm d-flex justify-content-between align-items-center"
+                    data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="true"
+                    aria-controls="collapseExample">Categories<i class="fas fa-caret-down"></i>
+                </h2>
+                <span data-bs-toggle="collapse" role="button" aria-expanded="true"
+                      aria-controls="collapseExample" href="#collapseExample"
+                      class="d-none text-center">...</span>
+                <ul class="categories__list collapse show" id="collapseExample">
+                    <?php
+                    $stmt = $conn->prepare("SELECT * FROM categories WHERE parent = 0");
+                    $stmt->execute();
+                    $categories = $stmt->fetchAll();
 
-              foreach ($categories as $category) {
-              ?>
-                <a href="categories.php?id=<?php echo $category['id'] ?>">
-                  <?php echo $category['title'] ?>
-                </a>
+                    foreach ($categories as $category) {
+                        ?>
 
-              <?php } ?>
-            </ul>
-          </div>
+                        <li>
+                            <a href="categories.php?id=<?php echo $category['id'] ?>">
+                                <?php echo $category['title'] ?>
+                            </a>
 
-          <!-- END CATEGORIES SECTION-->
+                            <ul class="sub-category-list">
+
+                                <?php
+
+                                $stmt = $conn->prepare("SELECT * FROM categories WHERE parent = ?");
+                                $stmt->execute([$category['id']]);
+                                $subCategories = $stmt->fetchAll();
+
+
+                                foreach ($subCategories as $subCategory) {
+                                    ?>
+
+                                    <li>
+                                        <a href="categories.php?id=<?php echo $subCategory['id'] ?>">
+                                            <?php echo $subCategory['title'] ?>
+                                        </a>
+                                    </li>
+
+                                <?php } ?>
+                            </ul>
+                        </li>
+
+                    <?php } ?>
+                </ul>
+            </div>
+
+            <!-- END CATEGORIES SECTION-->
         </div>
       </div>
     </div>

@@ -67,7 +67,7 @@ if (isset($_SESSION['username'])) {
               $stmt->execute([$ad['ad_id'], $_SESSION['id']]);
               $inFav = $stmt->rowCount();
             ?>
-              <div class="col-xl-3 col-lg-4 col-md-6">
+              <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
                 <div class="product card__product">
                   <a href="favourite.php?action=add&adid=<?php echo $ad['ad_id'] ?>" class="add__to__fav <?php echo $inFav == 1 ? 'active' : '' ?>">
                     <i class="fas fa-star"></i>
