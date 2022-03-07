@@ -205,7 +205,7 @@ if (document.querySelector(".profile_page") !== null) {
   function changLayout(e) {
     e.target.classList.toggle("fa-th");
     colOption.forEach((item) => {
-      item.classList.toggle("col-lg-12");
+      item.classList.toggle("col-xl-12");
     });
     product_card.forEach((i) => {
       i.classList.toggle("card__product_row");

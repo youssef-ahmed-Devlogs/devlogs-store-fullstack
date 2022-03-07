@@ -179,7 +179,7 @@ if (isset($_SESSION['username'])) {
 
                                 ?>
 
-                                <div class="col-xl-4 col-lg-6 px-2 col_option mb-4">
+                                <div class="col-xl-4 px-2 col_option mb-4">
                                     <div class="product card__product">
                                         <?php
                                         if (isset($_SESSION['username'])) {
