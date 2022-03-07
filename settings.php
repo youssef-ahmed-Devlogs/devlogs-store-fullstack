@@ -36,7 +36,7 @@ if (isset($_SESSION['username'])) {
                 <label for="cover_image">
                     <i class="fas fa-images"></i>
                 </label>
-                <input type="file" name="cover_image" id="cover_image">
+                <input type="file" name="cover_image" id="cover_image" onchange="this.form.submit()">
             </div>
             <div class="container">
                 <div class="middel_section">
@@ -51,7 +51,7 @@ if (isset($_SESSION['username'])) {
                             <label for="profile_image">
                                 <i class="fas fa-image"></i>
                             </label>
-                            <input type="file" name="profile_image" id="profile_image">
+                            <input type="file" name="profile_image" id="profile_image" onchange="this.form.submit()">
                         </div>
                 </div>
 

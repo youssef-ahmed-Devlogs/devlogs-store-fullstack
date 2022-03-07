@@ -182,7 +182,6 @@ requiredInputs.forEach((item) => {
   star.classList.add("star");
   star.innerText = "*";
   formGroup.append(star);
-  console.log(formGroup);
 });
 
 if (document.querySelector(".profile_page") !== null) {
@@ -246,13 +245,12 @@ if(document.querySelector("#from_preview") !== null) {
         date.getUTCDate() < 10 ? "0" + date.getUTCDate() : date.getUTCDate();
 
     date = `${year}-${month}-${day}`;
-    console.log(date);
     EditedDate.innerHTML = date;
 
     const addImg = document.getElementById("ad_image");
     addImg.addEventListener("change", uplaodImg);
 
-    let imgAge = document.getElementById("prdouct__img");
+    let imgAge = document.querySelector(".product__img");
 
     function uplaodImg() {
         let file = this.files[0];

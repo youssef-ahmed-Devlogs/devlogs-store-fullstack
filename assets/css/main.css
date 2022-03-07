@@ -1243,7 +1243,7 @@ header .user-settings .user {
 }
 .star {
   position: absolute;
-  top: 48px;
+  top: 45px;
   right: 20px;
   color: #dc3545;
 }
@@ -1540,4 +1540,74 @@ table tr {
   width: 5px;
   height: 5px;
   border-radius: 50%;
+}
+
+
+.form-control.is-invalid, .was-validated .form-control:invalid {
+  background: none;
+}
+
+.card__product {
+  width: 100%;
+}
+
+.card__product .product__img {
+  height: 295.5px;
+}
+
+.settings_page .profile_img {
+  width: max-content;
+  margin: 0 auto;
+  position: relative;
+}
+
+.settings_page .profile_img label {
+  position: absolute;
+  right: 0;
+  top: 30px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.settings_page .profile_bg_section {
+  position: relative;
+}
+
+
+
+.settings_page .profile_bg_section label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transition: .5s ease-in-out;
+  background-color: rgba(0, 0, 0, 0.4);
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  cursor: pointer;
+  color: #fff;
+  display: none;
+}
+
+.settings_page .profile_bg_section:hover label {
+  display: flex;
+}
+
+.settings_page input,
+.settings_page select{
+  width: 100%;
+}
+
+.middel_section_img img,
+.profile_img img {
+  background: #fff;
 }
